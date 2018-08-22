@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   const USERURL = 'http://localhost:3000/users'
 
   function getReading(sign){
-    const day = 'tomorrow'
+    const day = 'today'
     const searchURL = baseAztroURL + `?sign=${sign}&day=${day}`
     return fetch(searchURL, {
       method: 'POST'
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       getGiphy(reading.mood).then(e => {
         image.src = e.data[randNum].images.fixed_height.url
         color.innerText = reading.color
-        luckyNumber.innerText = reading.lucky_number
+        luckyNumber.innerText = `Lucky Number: ${reading.lucky_number}`
         compatibility.innerText = reading.compatibility
         luckyTime.innerText = reading.lucky_time
         mood.innerText = reading.mood
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       sign: formData.sign.value
     }
     renderReading(formOBJ.sign)
-    saveUser(formOBJ).then(console.log)
+    // saveUser(formOBJ).then(console.log)
   }
 
 
