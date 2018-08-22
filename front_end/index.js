@@ -116,11 +116,14 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
 
   function convertReading(e){
+    getGiphy(e.mood).then(pic => {
+      const image = pic.data[randNum].images.fixed_height.url
+      console.log(image)
     return fetch(convertedURL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        gif_url: getGiphy(e.mood),
+        gif_url: image,
         team: e.color,
         universe_id: e.lucky_number,
         time_warning: e.lucky_time,
@@ -129,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         description: e.description
       })
     }).then(console.log)
-  }
+  })}
 
 
 })
