@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         break;
         case newString.includes('yellow'):
         teamAssignment = 2
-        return teamAssignment
         break;
         case newString.includes('blue'):
          teamAssignment = 3
