@@ -1,0 +1,2 @@
+class Converted < ApplicationRecord
+end

@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_143544) do
+ActiveRecord::Schema.define(version: 2018_08_22_175041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "converteds", force: :cascade do |t|
+    t.string "gif_url"
+    t.integer "team"
+    t.string "universe_id"
+    t.string "time_warning"
+    t.string "compatibility"
+    t.string "user_id"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "readings", force: :cascade do |t|
     t.integer "user_id"

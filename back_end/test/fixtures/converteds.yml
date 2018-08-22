@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gif_url: MyString
+  team: 1
+  universe_id: MyString
+  time_warning: MyString
+  compatibility: MyString
+  user_id: MyString
+  description: MyString
+
+two:
+  gif_url: MyString
+  team: 1
+  universe_id: MyString
+  time_warning: MyString
+  compatibility: MyString
+  user_id: MyString
+  description: MyString

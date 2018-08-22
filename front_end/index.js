@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   const baseAztroURL = `https://aztro.sameerkumar.website/`
   const userURL = 'http://localhost:3000/users'
+  const readingURL = 'http://localhost:3000/readings'
+  const convertedURL = 'http://localhost:3000/converteds'
 
   function getReading(sign){
     const day = 'today'
@@ -93,8 +95,40 @@ document.addEventListener('DOMContentLoaded', () =>{
       username: formData.username.value,
       sign: formData.sign.value
     }
-    renderReading(formOBJ.sign)
-    saveUser(formOBJ).then(console.log)
+    // renderReading(formOBJ.sign)
+    saveUser(formOBJ)
+      .then(user => {
+        saveReading(user.sign, user.id)
+      })
+      renderReading(formOBJ.sign)
+
+  }
+
+  function saveReading(sign, userId){
+    getReading(sign).then(resp =>{
+      resp.user_id = userId
+      return fetch(readingURL,{
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(resp)
+      }).then(r => r.json()).then(convertReading)
+    })
+  }
+
+  function convertReading(e){
+    return fetch(convertedURL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        gif_url: getGiphy(e.mood),
+        team: e.color,
+        universe_id: e.lucky_number,
+        time_warning: e.lucky_time,
+        compatibility: e.compatibility,
+        user_id: e.user_id,
+        description: e.description
+      })
+    }).then(console.log)
   }
 
 
