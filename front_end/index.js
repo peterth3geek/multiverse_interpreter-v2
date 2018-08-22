@@ -142,31 +142,31 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function assignTeam(colorString){
     const newString = colorString.toLowerCase()
-    let teamAssignment = 0
+    let teamAssignment = 1
       switch (true) {
         case newString.includes('red'):
-        teamAssignment = 1
-        break;
-        case newString.includes('yellow'):
         teamAssignment = 2
         break;
-        case newString.includes('blue'):
-         teamAssignment = 3
+        case newString.includes('yellow'):
+        teamAssignment = 3
         break;
-        case newString.includes('green'):
+        case newString.includes('blue'):
          teamAssignment = 4
         break;
-        case newString.includes('orange'):
+        case newString.includes('green'):
          teamAssignment = 5
         break;
-        case newString.includes('purple'):
+        case newString.includes('orange'):
          teamAssignment = 6
         break;
-        case newString.includes('black'):
+        case newString.includes('purple'):
          teamAssignment = 7
         break;
+        case newString.includes('black'):
+         teamAssignment = 8
+        break;
         case newString.includes('white'):
-        teamAssignment = 8
+        teamAssignment = 9
         break;
       }
   }
