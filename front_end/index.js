@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', () =>{
 
+  createForm()
 
+  // FETCH URLs
   const baseAztroURL = `https://aztro.sameerkumar.website/`
   const userURL = 'http://localhost:3000/users'
   const readingURL = 'http://localhost:3000/readings'
   const convertedURL = 'http://localhost:3000/converteds'
+
+  // START ALL FETCH REQUESTS
 
   function getReading(sign){
     const day = 'today'
@@ -28,36 +32,63 @@ document.addEventListener('DOMContentLoaded', () =>{
     }).then(res => res.json())
   }
 
-  function getConvertedReading(){
-
+  function saveReading(sign, userId){
+    getReading(sign).then(resp =>{
+      resp.user_id = userId
+      return fetch(readingURL,{
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(resp)
+      }).then(r => r.json()).then(convertReading)
+    })
   }
 
-  createForm()
+  function saveConvertedReading(readingObject){
+    return fetch(convertedURL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(readingObject)
+    }).then(r => r.json())
+  }
+
+  function handleSubmit(e){
+    e.preventDefault()
+    const formData = e.target.parentElement
+    const formOBJ = {
+      username: formData.username.value,
+      sign: formData.sign.value
+    }
+    saveUser(formOBJ)
+      .then(user => {
+        saveReading(user.sign, user.id)
+      })
+  }
+
+  // END FETCH REQUEST BLOCK
 
   function renderReading(reading){
-
       const body = document.getElementById('reading-display')
       body.innerText = ''
       const ul = document.createElement('ul')
 
       const team = document.createElement('li')
+      const teamMotto = document.createElement('li')
       const cosmicAddress = document.createElement('li')
       const warning = document.createElement('li')
       const rundown = document.createElement('li')
       const compatibility = document.createElement('li')
       const image = document.createElement('img')
 
-      team.innerText = reading.team
-      cosmicAddress.innerText = reading.universe_id
+      team.innerText = reading.team.name
+      teamMotto.innerText = reading.team.motto
+      cosmicAddress.innerHTML = reading.universe_id
       warning.innerText = reading.time_warning
       rundown.innerText = reading.description
       compatibility.innerText = reading.compatibility
       image.src = reading.gif_url
 
-      ul.append(image, warning, rundown, compatibility, team)
+      ul.append(image, warning, rundown, compatibility, team, teamMotto, cosmicAddress)
       body.appendChild(ul)
-
-
   }
 
   function createForm(){
@@ -81,46 +112,12 @@ document.addEventListener('DOMContentLoaded', () =>{
     signInput.placeholder = 'Leo bitches'
     form.appendChild(signInput)
 
-
-    // form.append(inlineFormCustomSelect)
-
     submitBtn.innerText = 'Submit Bitches'
     submitBtn.addEventListener('click', handleSubmit)
     form.append(submitBtn)
 
-
-
     formBar.appendChild(form)
-
   }
-
-  function handleSubmit(e){
-    e.preventDefault()
-    const formData = e.target.parentElement
-    const formOBJ = {
-      username: formData.username.value,
-      sign: formData.sign.value
-    }
-    // renderReading(formOBJ.sign)
-    saveUser(formOBJ)
-      .then(user => {
-        saveReading(user.sign, user.id)
-      })
-
-  }
-
-  function saveReading(sign, userId){
-    getReading(sign).then(resp =>{
-      resp.user_id = userId
-      return fetch(readingURL,{
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(resp)
-      }).then(r => r.json()).then(convertReading)
-    })
-  }
-
-
 
   function convertReading(originalReading){
     const e = originalReading
@@ -129,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     let warning = warningsArray[Math.floor(Math.random() * warningsArray.length)];
     warning = warning.replace("<time>", e.lucky_time);
     //end of Time Warning Code
-    let randNum = Math.floor(Math.random()*24)
+    let randNum = Math.floor(Math.random()*20)
     getGiphy(e.mood).then(pic => {
        return pic.data[randNum].images.fixed_height.url
     }).then(image => {
@@ -147,13 +144,6 @@ document.addEventListener('DOMContentLoaded', () =>{
     })
   }
 
-  function saveConvertedReading(readingObject){
-    return fetch(convertedURL, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(readingObject)
-    }).then(r => r.json())
-  }
 
   function assignTeam(colorString){
     const newString = colorString.toLowerCase()
@@ -186,5 +176,6 @@ document.addEventListener('DOMContentLoaded', () =>{
       }
       return teamAssignment
   }
+
 
 })
