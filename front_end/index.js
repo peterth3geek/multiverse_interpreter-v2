@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
 
   function convertReading(e){
+    let randNum = Math.floor(Math.random()*25)
     getGiphy(e.mood).then(pic => {
       const image = pic.data[randNum].images.fixed_height.url
       console.log(image)
