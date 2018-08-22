@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  color: MyString
+  lucky_number: MyString
+  lucky_time: MyString
+  mood: MyString
+  description: MyString
+  compatibility: MyString
+
+two:
+  user_id: 1
+  color: MyString
+  lucky_number: MyString
+  lucky_time: MyString
+  mood: MyString
+  description: MyString
+  compatibility: MyString
