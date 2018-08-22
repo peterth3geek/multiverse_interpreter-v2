@@ -124,12 +124,13 @@ document.addEventListener('DOMContentLoaded', () =>{
     let randNum = Math.floor(Math.random()*25)
     getGiphy(e.mood).then(pic => {
       const image = pic.data[randNum].images.fixed_height.url
+      const teamNumber = assignTeam(e.color)
     return fetch(convertedURL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         gif_url: image,
-        team: e.color,
+        team: teamNumber,
         universe_id: e.lucky_number,
         time_warning: warning,
         compatibility: e.compatibility,
@@ -139,5 +140,35 @@ document.addEventListener('DOMContentLoaded', () =>{
     }).then(console.log)
   })}
 
+  function assignTeam(colorString){
+    const newString = colorString.toLowerCase()
+    let teamAssignment = 1
+      switch (true) {
+        case newString.includes('red'):
+        teamAssignment = 2
+        break;
+        case newString.includes('yellow'):
+        teamAssignment = 3
+        break;
+        case newString.includes('blue'):
+         teamAssignment = 4
+        break;
+        case newString.includes('green'):
+         teamAssignment = 5
+        break;
+        case newString.includes('orange'):
+         teamAssignment = 6
+        break;
+        case newString.includes('purple'):
+         teamAssignment = 7
+        break;
+        case newString.includes('black'):
+         teamAssignment = 8
+        break;
+        case newString.includes('white'):
+        teamAssignment = 9
+        break;
+      }
+  }
 
 })

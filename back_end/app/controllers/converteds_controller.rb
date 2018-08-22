@@ -54,8 +54,15 @@ class ConvertedsController < ApplicationController
       @converted = Converted.find(params[:id])
     end
 
+    # def new_team_assignment
+    #   self.teamAssignment
+    # end
+
     # Only allow a trusted parameter "white list" through.
     def converted_params
-      params.require(:converted).permit(:gif_url, :team, :universe_id, :time_warning, :compatibility, :user_id, :description)
+      c_params = params.require(:converted).permit(:gif_url, :team, :universe_id, :time_warning, :compatibility, :user_id, :description)
+      c_params[:team] = c_params[:team].to_i
+      c_params
+
     end
 end

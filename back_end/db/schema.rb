@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_175041) do
+ActiveRecord::Schema.define(version: 2018_08_22_200318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "converteds", force: :cascade do |t|
     t.string "gif_url"
-    t.integer "team"
+    t.integer "team_id"
     t.string "universe_id"
     t.string "time_warning"
     t.string "compatibility"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 2018_08_22_175041) do
     t.string "mood"
     t.string "description"
     t.string "compatibility"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.string "motto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
