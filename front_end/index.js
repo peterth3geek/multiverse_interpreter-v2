@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       sign: formData.sign.value
     }
     renderReading(formOBJ.sign)
-    // saveUser(formOBJ).then(console.log)
+    saveUser(formOBJ).then(console.log)
   }
 
 
