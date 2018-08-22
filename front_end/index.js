@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () =>{
 
-  // console.log("Hello!");
 
   const baseAztroURL = `https://aztro.sameerkumar.website/`
   const userURL = 'http://localhost:3000/users'
@@ -53,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () =>{
         luckyTime.innerText = reading.lucky_time
         mood.innerText = reading.mood
         rundown.innerText = reading.description
-        console.log(reading);
         ul.append(image, color, luckyNumber, luckyTime, mood, rundown, compatibility)
         body.append(ul)
       })
@@ -115,7 +113,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     })
   }
 
+
+
   function convertReading(e){
+    //Time Warning Code
+    let warningsArray = ["Do not be home at <time>. ", "At <time>, a metaphor could save your life. ", "At <time>, you should ask that special someone out for coffee and cherry pie. Or don't! But the stars would prefer if you did. ", "At <time>, it will be too late for good things to happen, so get on with it!", "At <time>, you will embark on a fruitful business venture!", "You are a person with a good sense of justice, and <time> will be the time to act like it. ", "At <time>, take a moment to do something just for yourself for a goddamn change. ", "At <time>, you should stop hiding your light under a basket. ", "A golden egg of opportunity falls into your lap at <time>, so don't let it break like last time. ", "Your pain is the breaking of the shell that encloses your understanding. Also, the store closes at <time>, so don't forget to buy that mug brownie for one. ", "At <time>, there will be no changes of note in your life.", "At <time>, remember that just because someone puts a diving board somewhere doesn’t mean you have to jump off it. ", "Betrayal, treason, and vile calumny will be the order of things at <time>, which you must admit, sounds a lot cooler than the light office work you’re used to. "];
+    let warning = warningsArray[Math.floor(Math.random() * warningsArray.length)];
+    warning = warning.replace("<time>", e.lucky_time);
+    //end of Time Warning Code
     let randNum = Math.floor(Math.random()*25)
     getGiphy(e.mood).then(pic => {
       const image = pic.data[randNum].images.fixed_height.url
@@ -127,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         gif_url: image,
         team: teamNumber,
         universe_id: e.lucky_number,
-        time_warning: e.lucky_time,
+        time_warning: warning,
         compatibility: e.compatibility,
         user_id: e.user_id,
         description: e.description
