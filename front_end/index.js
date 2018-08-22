@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       const body = document.getElementById('reading-display')
       body.innerText = ''
       const ul = document.createElement('ul')
+      // ul.classlist.add('list')
       const color = document.createElement('li')
       const luckyNumber = document.createElement('li')
       const luckyTime = document.createElement('li')
@@ -46,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       getGiphy(reading.mood).then(e => {
         image.src = e.data[randNum].images.fixed_height.url
         color.innerText = reading.color
+        // color.classList.add('form-inline')
         luckyNumber.innerText = `Lucky Number: ${reading.lucky_number}`
         compatibility.innerText = reading.compatibility
         luckyTime.innerText = reading.lucky_time
@@ -64,11 +66,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     const usernameInput = document.createElement('input')
     const signInput = document.createElement('input')
     const submitBtn = document.createElement('button')
-    const selectBar = document.getElementById('inlineFormCustomSelect')
+    // const selectBar = document.getElementById('inlineFormCustomSelect')
     const navbar = document.getElementById('nav')
     navbar.appendChild(form)
     form.name = 'form'
-    form.classList.add("form-inline")
+    // form.classList.add("form-inline")
     usernameInput.type = 'TEXT'
     usernameInput.name = 'username'
     usernameInput.placeholder = 'girrafe barf'
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     form.appendChild(signInput)
 
 
-    form.append(inlineFormCustomSelect)
+    // form.append(inlineFormCustomSelect)
 
     submitBtn.innerText = 'Submit Bitches'
     submitBtn.addEventListener('click', handleSubmit)
@@ -123,12 +125,12 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function convertReading(e){
     //Time Warning Code
-    let warningsArray = ["Do not be home at <time>. ", "At <time>, a metaphor could save your life. ", "At <time>, you should ask that special someone out for coffee and cherry pie. Or don't! But the stars would prefer if you did. ", "At <time>, it will be too late for good things to happen, so get on with it!", "At <time>, you will embark on a fruitful business venture!", "You are a person with a good sense of justice, and <time> will be the time to act like it. ", "At <time>, take a moment to do something just for yourself for a goddamn change. ", "At <time>, you should stop hiding your light under a basket. ", "A golden egg of opportunity falls into your lap at <time>, so don't let it break like last time. ", "Your pain is the breaking of the shell that encloses your understanding. Also, the store closes at <time>, so don't forget to buy that mug brownie for one. ", "At <time>, there will be no changes of note in your life.", "At <time>, remember that just because someone puts a diving board somewhere doesn’t mean you have to jump off it. ", "Betrayal, treason, and vile calumny will be the order of things at <time>, which you must admit, sounds a lot cooler than the light office work you’re used to. "];
+    let warningsArray = ["Do not be home at <time>. ", "At <time>, a metaphor could save your life. ", "At <time>, you should ask that special someone out for coffee and cherry pie. Or don't! But the stars would prefer if you did. ", "At <time>, it will be too late for good things to happen, so get on with it!", "At <time>, you will embark on a fruitful business venture!", "You are a person with a good sense of justice, and <time> will be the time to act like it. ", "At <time>, take a moment to do something just for yourself for a goddamn change. ", "At <time>, you should stop hiding your light under a basket. ", "A golden egg of opportunity falls into your lap at <time>, so don't let it break like last time. ", "Your pain is the breaking of the shell that encloses your understanding. Also, the store closes at <time>, so don't forget to buy that mug brownie for one. ", "At <time>, there will be no changes of note in your life.", `Betrayal, treason, and vile calumny will be the order of things at <time>, which you must admit, sounds a lot cooler than the light office work you’re used to.`, "At <time>, remember that just because someone puts a diving board somewhere doesn’t mean you have to jump off it. "];
     let warning = warningsArray[Math.floor(Math.random() * warningsArray.length)];
     warning = warning.replace("<time>", e.lucky_time);
     //end of Time Warning Code
-    let randNum = Math.floor(Math.random()*25)
-    getGiphy(e.mood).then(pic => {
+    let randNum = Math.floor(Math.random()*24)
+    return getGiphy(e.mood).then(pic => {
       const image = pic.data[randNum].images.fixed_height.url
       const teamNumber = assignTeam(e.color)
     return fetch(convertedURL, {
@@ -136,14 +138,14 @@ document.addEventListener('DOMContentLoaded', () =>{
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         gif_url: image,
-        team: teamNumber,
+        team_id: teamNumber,
         universe_id: e.lucky_number,
         time_warning: warning,
         compatibility: e.compatibility,
         user_id: e.user_id,
         description: e.description
       })
-    }).then(console.log)
+    })
   })}
 
   function assignTeam(colorString){
@@ -175,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         teamAssignment = 9
         break;
       }
+      return teamAssignment
   }
 
 })

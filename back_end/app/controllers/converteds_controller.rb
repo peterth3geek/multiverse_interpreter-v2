@@ -15,17 +15,9 @@ class ConvertedsController < ApplicationController
 
   # POST /converteds
   def create
-    address_number = converted_params["universe_id"]
-    address_street = Faker::RickAndMorty.location
-    address_suffix = Faker::Address.street_suffix
-    address_city = Faker::Zelda.location
-    address_country = Faker::LordOfTheRings.location
-    address_zip = Faker::Number.number(5)
-    address_planet = Faker::HitchhikersGuideToTheGalaxy.planet
-    address = "#{address_number} #{address_street} #{address_suffix}<br>#{address_city}, #{address_country} #{address_zip}<br>Planet #{address_planet}"
 
     @converted = Converted.new(converted_params)
-    @converted.universe_id = address
+    # @converted.universe_id = address
 
     if @converted.save
       render json: @converted, status: :created, location: @converted
@@ -60,8 +52,18 @@ class ConvertedsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def converted_params
-      c_params = params.require(:converted).permit(:gif_url, :team, :universe_id, :time_warning, :compatibility, :user_id, :description)
-      c_params[:team] = c_params[:team].to_i
+      address_street = Faker::RickAndMorty.location
+      address_suffix = Faker::Address.street_suffix
+      address_city = Faker::Zelda.location
+      address_country = Faker::LordOfTheRings.location
+      address_zip = Faker::Number.number(5)
+      address_planet = Faker::HitchhikersGuideToTheGalaxy.planet
+      address = "#{address_street} #{address_suffix}<br>#{address_city}, #{address_country} #{address_zip}<br>Planet #{address_planet}"
+
+
+      c_params = params.require(:converted).permit(:gif_url, :team_id, :universe_id, :time_warning, :compatibility, :user_id, :description)
+      c_params[:team_id] = c_params[:team_id].to_i
+      c_params[:universe_id] = "#{c_params[:universe_id]} #{address}"
       c_params
 
     end
