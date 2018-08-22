@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   // console.log("Hello!");
 
   const baseAztroURL = `https://aztro.sameerkumar.website/`
-  const USERURL = 'http://localhost:3000/users'
+  const userURL = 'http://localhost:3000/users'
 
   function getReading(sign){
     const day = 'today'
@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
 
   function saveUser(userOBJ){
-    return fetch(USERURL, {
+    return fetch(userURL, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(userOBJ)
-    })
+    }).then(res => res.json())
   }
 
   createForm()
