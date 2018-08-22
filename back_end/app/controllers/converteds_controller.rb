@@ -15,7 +15,17 @@ class ConvertedsController < ApplicationController
 
   # POST /converteds
   def create
+    address_number = converted_params["universe_id"]
+    address_street = Faker::RickAndMorty.location
+    address_suffix = Faker::Address.street_suffix
+    address_city = Faker::Zelda.location
+    address_country = Faker::LordOfTheRings.location
+    address_zip = Faker::Number.number(5)
+    address_planet = Faker::HitchhikersGuideToTheGalaxy.planet
+    address = "#{address_number} #{address_street} #{address_suffix}<br>#{address_city}, #{address_country} #{address_zip}<br>Planet #{address_planet}"
+
     @converted = Converted.new(converted_params)
+    @converted.universe_id = address
 
     if @converted.save
       render json: @converted, status: :created, location: @converted
