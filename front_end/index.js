@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () =>{
     getReading(sign).then(reading => {
       const body = document.getElementById('reading-display')
       body.innerText = ''
-
       const ul = document.createElement('ul')
       const color = document.createElement('li')
       const luckyNumber = document.createElement('li')
@@ -67,9 +66,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     const usernameInput = document.createElement('input')
     const signInput = document.createElement('input')
     const submitBtn = document.createElement('button')
-
+    const selectBar = document.getElementById('inlineFormCustomSelect')
+    const navbar = document.getElementById('nav')
+    navbar.appendChild(form)
     form.name = 'form'
-
+    form.classList.add("form-inline")
     usernameInput.type = 'TEXT'
     usernameInput.name = 'username'
     usernameInput.placeholder = 'girrafe barf'
@@ -80,9 +81,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     signInput.placeholder = 'Leo bitches'
     form.appendChild(signInput)
 
+
+    form.append(inlineFormCustomSelect)
+
     submitBtn.innerText = 'Submit Bitches'
     submitBtn.addEventListener('click', handleSubmit)
-    form.appendChild(submitBtn)
+    form.append(submitBtn)
+
+
 
     formBar.appendChild(form)
 
