@@ -94,9 +94,13 @@ class Generator{
   static renderReading(reading){
     console.log(reading);
       const body = document.getElementById('reading-display')
-        body.className = 'center'
+        body.className = `center card card-header-${reading.team.id} micro-margin scroll-div`
         body.innerText = ''
-      const ul = document.createElement('ul')
+
+      const bigDiv = document.createElement('div')
+        bigDiv.className = 'card'
+      const ul = document.createElement('div')
+        ul.className = `card-body`
 
       const team = document.createElement('p')
       team.className = 'team-p'
@@ -141,7 +145,7 @@ class Generator{
   static  revealTeamStandings(){
     const display = document.getElementById('reading-display')
       display.innerHTML = ''
-      display.classList.add('center')
+      display.className = 'center scroll-div'
     Adapter.getTeams().then(teams => {
       teams.sort((a, b) => b.converteds.length - a.converteds.length).forEach(team => {
 
