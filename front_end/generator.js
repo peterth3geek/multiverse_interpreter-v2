@@ -12,13 +12,13 @@ class Generator{
           const cardDiv = document.createElement('div')
             cardDiv.dataset.id = reading.id
             cardDiv.id = `user-reading-${reading.id}`
-            cardDiv.className = 'card marginal'
+            cardDiv.className = `card marginal`
             // cardDiv.addEventListener('mouseover', e => console.log(e.target))
             // cardDiv.addEventListener('click', console.log)
           const headerDiv = document.createElement('div')
             headerDiv.id = `image-${reading.id}`
             headerDiv.dataset.id = reading.id
-            headerDiv.classList.add('card-header')
+
           const bodyDiv = document.createElement('div')
             bodyDiv.dataset.id = reading.id
             bodyDiv.id = `body-${reading.id}`
@@ -27,39 +27,42 @@ class Generator{
           const image = document.createElement('img')
             image.src = reading.gif_url
             image.className = 'fit-gif'
-            const team = document.createElement('p')
+          const team = document.createElement('p')
             team.className = 'team-p'
-            const teamMotto = document.createElement('p')
+          const teamMotto = document.createElement('p')
             teamMotto.className = 'team-p'
-            const cosmicAddress = document.createElement('p')
+          const cosmicAddress = document.createElement('p')
             cosmicAddress.className = 'cosmic-A'
-            const warning = document.createElement('p')
+          const warning = document.createElement('p')
             warning.className = 'warning-p'
-            const rundown = document.createElement('p')
+          const rundown = document.createElement('p')
             rundown.className = 'rundown-p'
-            const compatibility = document.createElement('p')
+          const compatibility = document.createElement('p')
             compatibility.className = 'comp-p'
           // Card Body Data
           const ul = document.createElement('ul')
           ul.style = 'font-size: 0.8rem;'
           // Card List Data
 
-
             if (reading.team === null){
               team.innerText = "No team Assigned"
               teamMotto.innerText = ''
+              headerDiv.className = `card-header card-header-1`
+              bodyDiv.className = `card-header card-header-1`
+
             } else{
               team.innerText = reading.team.name
               teamMotto.innerText = reading.team.motto
+              headerDiv.className = `card-header card-header-${reading.team.id}`
+              bodyDiv.className = `card-header card-header-${reading.team.id}`
+
             }
 
             cosmicAddress.innerHTML = reading.universe_id
-
             warning.innerText = reading.time_warning
-
             rundown.innerText = reading.description
-
             compatibility.innerText = reading.compatibility
+
           const viewBtn = document.createElement('button')
             viewBtn.dataset.id = reading.id
             viewBtn.innerText = "View"
@@ -88,7 +91,7 @@ class Generator{
   static renderReading(reading){
     console.log(reading)
       const body = document.getElementById('reading-display')
-        body.classList.remove('center')
+        body.className = 'center'
         body.innerText = ''
       const ul = document.createElement('ul')
 
@@ -105,7 +108,7 @@ class Generator{
       const compatibility = document.createElement('p')
       compatibility.className = 'comp-p'
       const image = document.createElement('img')
-      image.className = "img-p"
+      image.className = "large-gif"
 
       team.innerText = reading.team.name
       teamMotto.innerText = reading.team.motto

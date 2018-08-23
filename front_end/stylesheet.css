@@ -21,6 +21,15 @@ img {
   align-content: center;
 }
 
+.large-gif{
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+  align-content: center;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
 .scroll-div {
   overflow: scroll;
   overflow-y: scroll;
@@ -71,6 +80,9 @@ img {
 .micro-margin{
   margin: 1vh;
 }
+.micro-padding{
+  padding: 1vh;
+}
 
 
 .team-p{
@@ -119,7 +131,7 @@ img {
   /* position: absolute;
    right: 200px;
    width: 300px; */
-   
+
   width: 60%;
   length: 60%;
     /* border: 3px solid #73AD21; */
