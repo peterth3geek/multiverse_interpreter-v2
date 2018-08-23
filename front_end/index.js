@@ -108,8 +108,6 @@ document.addEventListener('DOMContentLoaded', () =>{
   function createForm(){
     const navBar = document.getElementById('nav')
 
-    // const formBar = document.getElementById('form-bar')
-
     const usernameDiv = document.createElement('div')
       usernameDiv.classList.add('form-group')
     const dropdownDiv = document.createElement('div')
@@ -130,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       submitBtn.addEventListener('click', handleSubmit)
       submitBtn.className = 'btn btn-primary mr-sm-2'
     const signSelect = document.createElement('select')
+
       signSelect.name = 'sign'
       signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
     const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]

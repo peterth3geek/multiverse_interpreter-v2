@@ -11,7 +11,7 @@
 .scroll-div {
   overflow: scroll;
   overflow-y: scroll;
-  max-height: 85vh;
+  max-height: 95vh;
 }
 
 /* // .col-4 {
@@ -22,6 +22,11 @@
 // } */
 
 #sidebar-data {
+  border: 1px solid;
+}
+
+#form-bar {
+  width: 90vw;
   border: 1px solid;
 }
 
