@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     .then(r => r.json())
   }
 
+  function getAllConvertedReadings(){
+    return fetch(convertedURL).then(r => r.json())
+  }
+
   function getGiphy(search){
     const gifSearch = `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=RmAgqsS7izavtgXBLHLvsDmL0MAjBTF4`
     return fetch(gifSearch).then(r => r.json())
@@ -61,10 +65,15 @@ document.addEventListener('DOMContentLoaded', () =>{
     saveUser(formOBJ)
       .then(user => {
         saveReading(user.sign, user.id)
+        return renderConvertedReadingList(user.id)
+
       })
+
   }
 
   // END FETCH REQUEST BLOCK
+
+  // Front End Data Appending
 
   function renderReading(reading){
       const body = document.getElementById('reading-display')
@@ -101,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () =>{
     const navbar = document.getElementById('nav')
     navbar.appendChild(form)
     form.name = 'form'
-    // form.classList.add("form-inline")
     usernameInput.type = 'TEXT'
     usernameInput.name = 'username'
     usernameInput.placeholder = 'girrafe barf'
@@ -120,6 +128,51 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     formBar.appendChild(form)
   }
+
+  function renderConvertedReadingList(userID){
+    const fullList = document.getElementById('sidebar-data')
+    fullList.innerHTML = ''
+    getAllConvertedReadings().then(list =>{
+      list.forEach(reading => {
+        if (reading.user.id === userID){
+          const littleDiv = document.createElement('div')
+
+          littleDiv.id = `user-reading${reading.id}`
+
+          const ul = document.createElement('ul')
+
+          const team = document.createElement('li')
+          const teamMotto = document.createElement('li')
+          const cosmicAddress = document.createElement('li')
+          const warning = document.createElement('li')
+          const rundown = document.createElement('li')
+          const compatibility = document.createElement('li')
+          const image = document.createElement('img')
+
+          if (reading.team === null){
+            team.innerText = "No team Assigned"
+            teamMotto.innerText = ''
+          } else{
+            team.innerText = reading.team.name
+            teamMotto.innerText = reading.team.motto
+          }
+          cosmicAddress.innerHTML = reading.universe_id
+          warning.innerText = reading.time_warning
+          rundown.innerText = reading.description
+          compatibility.innerText = reading.compatibility
+          image.src = reading.gif_url
+
+
+          ul.append(image, warning, rundown, compatibility, team, teamMotto, cosmicAddress)
+
+          littleDiv.appendChild(ul)
+          fullList.appendChild(littleDiv)
+        }
+      })
+    })
+  }
+
+  // THIS IS DATA CONVERSION
 
   function convertReading(originalReading){
     const e = originalReading
