@@ -26,6 +26,8 @@ class Generator{
           const image = document.createElement('img')
             image.src = reading.gif_url
             image.className = 'fit-gif'
+          const createdAt = document.createElement('p')
+            team.className = 'createdAt-p'
           const team = document.createElement('p')
             team.className = 'team-p'
           const teamMotto = document.createElement('p')
@@ -57,6 +59,7 @@ class Generator{
 
             }
             cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
+            createdAt.innerHTML = reading.created_at
             warning.innerText = reading.time_warning
             rundown.innerText = reading.description
             compatibility.innerText = reading.compatibility
@@ -74,7 +77,7 @@ class Generator{
 
           // Append Data to Sub-Body
           // ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
-          ul.append(team, cosmicAddress, viewBtn, deleteBtn)
+          ul.append(createdAt, team, cosmicAddress, viewBtn, deleteBtn)
           // Append Card Data
           headerDiv.appendChild(image)
           bodyDiv.appendChild(ul)

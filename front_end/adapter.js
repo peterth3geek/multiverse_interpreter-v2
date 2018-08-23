@@ -96,6 +96,7 @@ class Adapter {
   static handleReadings(e){
     e.preventDefault()
     const formData = e.target.parentElement.parentElement
+
     const formOBJ = {
       username: formData.username.value,
       sign: formData.sign.value
