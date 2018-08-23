@@ -114,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () =>{
       usernameDiv.classList.add('form-group')
     const submitDiv = document.createElement('div')
       usernameDiv.classList.add('form-group')
+    const readingsDiv = document.createElement('div')
+        usernameDiv.classList.add('form-group')
 
     const form = document.createElement('form')
       form.classList.add('form-inline')
@@ -127,8 +129,11 @@ document.addEventListener('DOMContentLoaded', () =>{
       submitBtn.innerText = 'Get Multiverse Reading'
       submitBtn.addEventListener('click', handleSubmit)
       submitBtn.className = 'btn btn-primary mr-sm-2'
+    const readingsBtn = document.createElement('button')
+        readingsBtn.innerText = 'All My Readings'
+        // readingsBtn.addEventListener('click', handleSubmit)
+        readingsBtn.className = 'btn btn-primary mr-sm-2'
     const signSelect = document.createElement('select')
-
       signSelect.name = 'sign'
       signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
     const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
@@ -137,8 +142,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     usernameDiv.appendChild(usernameInput)
     dropdownDiv.appendChild(signSelect)
     submitDiv.appendChild(submitBtn)
+    readingsDiv.appendChild(readingsBtn)
 
-    form.append(usernameDiv, dropdownDiv, submitDiv)
+
+    form.append(usernameDiv, dropdownDiv, submitDiv, readingsDiv)
 
     renderOptionButtons()
     navBar.appendChild(form)
