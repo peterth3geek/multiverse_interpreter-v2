@@ -64,7 +64,6 @@ class Adapter {
   }
 
   static handleSubmit(e){
-    console.log(e.target.parentElement.parentElement);
     e.preventDefault()
     const formData = e.target.parentElement.parentElement
     const formOBJ = {
@@ -100,6 +99,19 @@ class Adapter {
     const teamURL = `http://localhost:3000/teams`
 
     return fetch(teamURL).then(r => r.json())
+  }
+
+  static deleteReading(e){
+    const readingID = e.target.dataset.id
+    const convertedURL = 'http://localhost:3000/converteds'
+
+    return fetch(`${convertedURL}/${readingID}`, {
+      method: 'DELETE'
+    }).then(Generator.hideReading(readingID))
+
+
+
+
   }
 
   // END FETCH REQUEST BLOCK

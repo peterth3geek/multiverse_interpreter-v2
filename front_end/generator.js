@@ -10,10 +10,10 @@ class Generator{
           // Create Card Elements
           const cardDiv = document.createElement('div')
             cardDiv.dataset.id = reading.id
-            cardDiv.id = `user-reading${reading.id}`
-            cardDiv.classList.add('card')
+            cardDiv.id = `user-reading-${reading.id}`
+            cardDiv.className = 'card marginal'
             // cardDiv.addEventListener('mouseover', e => console.log(e.target))
-            cardDiv.addEventListener('click', console.log)
+            // cardDiv.addEventListener('click', console.log)
           const headerDiv = document.createElement('div')
             headerDiv.id = `image-${reading.id}`
             headerDiv.dataset.id = reading.id
@@ -51,9 +51,10 @@ class Generator{
             viewBtn.className = 'btn btn-info'
             viewBtn.addEventListener('click', console.log)
           const deleteBtn = document.createElement('button')
+            deleteBtn.dataset.id = reading.id
             deleteBtn.innerText = 'Delete'
             deleteBtn.className = 'btn btn-danger'
-            deleteBtn.addEventListener('click', console.log)
+            deleteBtn.addEventListener('click', Adapter.deleteReading)
 
           // Append Data to Sub-Body
           ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
@@ -117,7 +118,7 @@ class Generator{
           teamCard.dataset.id = team.id
 
         const bodyDiv = document.createElement('div')
-          bodyDiv.classList.add('card-body')
+          bodyDiv.className = 'card-body motto-body'
         const headerDiv = document.createElement('div')
           headerDiv.classList.add(`card-header-${team.id}`)
 
@@ -138,6 +139,11 @@ class Generator{
 
       })
     })
+  }
+
+  static hideReading(readingID){
+    const reading = document.getElementById(`user-reading-${readingID}`)
+    reading.hidden = true
   }
 
 }
