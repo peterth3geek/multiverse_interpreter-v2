@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
 
   function createForm(){
+    const navBar = document.getElementById('nav')
     const formBar = document.getElementById('form-bar')
     const form = document.createElement('form')
     const usernameInput = document.createElement('input')
@@ -127,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     form.append(submitBtn)
 
     formBar.appendChild(form)
+    navBar.appendChild(formBar)
   }
 
   function renderConvertedReadingList(userID){
