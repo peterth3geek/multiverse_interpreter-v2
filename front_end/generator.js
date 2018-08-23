@@ -3,7 +3,7 @@ class Generator{
   static renderConvertedReadingList(userID){
     const fullList = document.getElementById('sidebar-data')
     // fullList.classList.add('scroll-div')
-    fullList.innerHTML = ''
+    fullList.innerText = ''
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
         if (reading.user.id === userID){

@@ -10,8 +10,22 @@ class Adapter {
 
   static getReading(sign){
     const baseAztroURL = `https://aztro.sameerkumar.website/`
+    let randNum = Math.floor(Math.random()*3)
 
-    const day = 'today'
+    let day = ''
+
+    switch(randNum){
+      case 0:
+        day = 'yesterday'
+      break;
+      case 1:
+        day = 'tomorrow'
+      break;
+      case 2:
+        day = 'today'
+      break;
+    }
+
     const searchURL = baseAztroURL + `?sign=${sign}&day=${day}`
     return fetch(searchURL, {
       method: 'POST'
