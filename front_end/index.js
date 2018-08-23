@@ -185,12 +185,17 @@ document.addEventListener('DOMContentLoaded', () =>{
         if (reading.user.id === userID){
           // Create Card Elements
           const cardDiv = document.createElement('div')
+            cardDiv.dataset.id = reading.id
             cardDiv.id = `user-reading${reading.id}`
             cardDiv.classList.add('card')
+            cardDiv.addEventListener('mouseover', e => console.log(e.target))
+            cardDiv.addEventListener('click', showSingleReading)
           const headerDiv = document.createElement('div')
             headerDiv.id = `image-${reading.id}`
+            headerDiv.dataset.id = reading.id
             headerDiv.classList.add('card-header')
           const bodyDiv = document.createElement('div')
+            bodyDiv.dataset.id = reading.id
             bodyDiv.id = `body-${reading.id}`
             bodyDiv.classList.add('card-body')
           // Card Header Data
@@ -302,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         const teamCard = document.createElement('div')
           // teamCard.classList.add('card')
           teamCard.className = 'card octothorpe center mx-auto'
+          teamCard.dataset.id = team.id
 
         const bodyDiv = document.createElement('div')
           bodyDiv.classList.add('card-body')
@@ -325,6 +331,10 @@ document.addEventListener('DOMContentLoaded', () =>{
 
       })
     })
+  }
+
+  function showSingleReading(e){
+    console.log(e.target.dataset);
   }
 
 
