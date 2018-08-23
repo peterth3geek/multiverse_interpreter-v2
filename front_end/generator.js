@@ -6,6 +6,7 @@ class Generator{
     fullList.innerHTML = ''
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
+        console.log(reading)
         if (reading.user.id === userID){
           // Create Card Elements
           const cardDiv = document.createElement('div')
@@ -25,9 +26,10 @@ class Generator{
           // Card Header Data
           const image = document.createElement('img')
             image.src = reading.gif_url
-
+            image.style = 'width: 200px'
           // Card Body Data
           const ul = document.createElement('ul')
+          ul.style = 'font-size: 0.8rem;'
           // Card List Data
           const team = document.createElement('li')
           const teamMotto = document.createElement('li')
@@ -47,9 +49,10 @@ class Generator{
           const compatibility = document.createElement('li')
             compatibility.innerText = reading.compatibility
           const viewBtn = document.createElement('button')
+            viewBtn.dataset.id = reading.id
             viewBtn.innerText = "View"
             viewBtn.className = 'btn btn-info'
-            viewBtn.addEventListener('click', console.log)
+            viewBtn.addEventListener('click', Adapter.viewReading)
           const deleteBtn = document.createElement('button')
             deleteBtn.dataset.id = reading.id
             deleteBtn.innerText = 'Delete'
@@ -71,6 +74,7 @@ class Generator{
   }
 
   static renderReading(reading){
+    console.log(reading)
       const body = document.getElementById('reading-display')
         body.classList.remove('center')
         body.innerText = ''

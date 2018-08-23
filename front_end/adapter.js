@@ -72,7 +72,7 @@ class Adapter {
     }
     Adapter.saveUser(formOBJ)
       .then(user => {
-        currentUserId = user.id
+        // currentUserId = user.id
         Adapter.saveReading(user.sign, user.id)
         return Generator.renderConvertedReadingList(user.id)
 
@@ -90,7 +90,7 @@ class Adapter {
 
     Adapter.saveUser(formOBJ)
       .then(user => {
-        currentUserId = user.id
+        // currentUserId = user.id
         return Generator.renderConvertedReadingList(user.id)
       })
   }
@@ -108,10 +108,13 @@ class Adapter {
     return fetch(`${convertedURL}/${readingID}`, {
       method: 'DELETE'
     }).then(Generator.hideReading(readingID))
+  }
 
-
-
-
+  static viewReading(e){
+    const readingID = e.target.dataset.id
+    const convertedURL = 'http://localhost:3000/converteds'
+console.log(readingID)
+    return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 
   // END FETCH REQUEST BLOCK

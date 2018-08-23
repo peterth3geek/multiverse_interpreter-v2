@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', createForm)
 
- var currentUserId = ""
+ // var currentUserId = ""
 
   function createForm(){
     const navBar = document.getElementById('nav')
