@@ -141,9 +141,10 @@ document.addEventListener('DOMContentLoaded', () =>{
           const littleDiv = document.createElement('div')
 
           littleDiv.id = `user-reading${reading.id}`
-
+          littleDiv.classList.add('card')
+          littleDiv.style = 'width: 18rem;'
           const ul = document.createElement('ul')
-
+          ul.classList.add('card-body')
           const team = document.createElement('li')
           const teamMotto = document.createElement('li')
           const cosmicAddress = document.createElement('li')
