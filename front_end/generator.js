@@ -6,7 +6,6 @@ class Generator{
     fullList.innerText = ''
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
-        console.log(reading)
         if (reading.user.id === userID){
           // Create Card Elements
           const cardDiv = document.createElement('div')
@@ -89,6 +88,7 @@ class Generator{
   }
 
   static renderReading(reading){
+    console.log(reading);
       const body = document.getElementById('reading-display')
         body.className = 'center'
         body.innerText = ''
