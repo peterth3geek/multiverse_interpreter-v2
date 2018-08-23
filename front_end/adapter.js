@@ -73,6 +73,7 @@ class Adapter {
     }
     Adapter.saveUser(formOBJ)
       .then(user => {
+        currentUserId = user.id
         Adapter.saveReading(user.sign, user.id)
         return Generator.renderConvertedReadingList(user.id)
 
@@ -81,6 +82,7 @@ class Adapter {
 
   static handleReadings(e){
     e.preventDefault()
+
     const formData = e.target.parentElement.parentElement
     const formOBJ = {
       username: formData.username.value,
@@ -89,6 +91,7 @@ class Adapter {
 
     Adapter.saveUser(formOBJ)
       .then(user => {
+        currentUserId = user.id
         return Generator.renderConvertedReadingList(user.id)
       })
   }
