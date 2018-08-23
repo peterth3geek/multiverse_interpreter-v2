@@ -12,8 +12,6 @@ class Generator{
             cardDiv.dataset.id = reading.id
             cardDiv.id = `user-reading-${reading.id}`
             cardDiv.className = `card marginal`
-            // cardDiv.addEventListener('mouseover', e => console.log(e.target))
-            // cardDiv.addEventListener('click', console.log)
           const headerDiv = document.createElement('div')
             headerDiv.id = `image-${reading.id}`
             headerDiv.dataset.id = reading.id
@@ -94,7 +92,6 @@ class Generator{
   }
 
   static renderReading(reading){
-    console.log(reading);
       const body = document.getElementById('reading-display')
         body.className = `center card card-header-${reading.team.id} micro-margin scroll-div`
         body.innerText = ''
@@ -127,10 +124,6 @@ class Generator{
       compatibility.innerText = reading.compatibility
       image.src = reading.gif_url
 
-      // const viewBtn = document.createElement('button')
-      //   viewBtn.innerText = "View"
-      //   viewBtn.className = 'btn btn-info'
-      //   viewBtn.addEventListener('click', console.log)
       const deleteBtn = document.createElement('button')
         deleteBtn.dataset.id = reading.id
         deleteBtn.id = 'delReading'
