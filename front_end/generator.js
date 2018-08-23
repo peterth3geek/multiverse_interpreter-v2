@@ -3,7 +3,7 @@ class Generator{
   static renderConvertedReadingList(userID){
     const fullList = document.getElementById('sidebar-data')
     // fullList.classList.add('scroll-div')
-    fullList.innerHTML = ''
+    fullList.innerText = ''
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
         console.log(reading)
@@ -26,7 +26,7 @@ class Generator{
           // Card Header Data
           const image = document.createElement('img')
             image.src = reading.gif_url
-            image.style = 'width: 200px'
+            image.className = 'fit-gif'
           // Card Body Data
           const ul = document.createElement('ul')
           ul.style = 'font-size: 0.8rem;'
