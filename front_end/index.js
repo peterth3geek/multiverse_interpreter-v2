@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   const userURL = 'http://localhost:3000/users'
   const readingURL = 'http://localhost:3000/readings'
   const convertedURL = 'http://localhost:3000/converteds'
+  const teamURL = `http://localhost:3000/teams`
 
   // START ALL FETCH REQUESTS
 
@@ -56,8 +57,9 @@ document.addEventListener('DOMContentLoaded', () =>{
   }
 
   function handleSubmit(e){
+    console.log(e.target.parentElement.parentElement);
     e.preventDefault()
-    const formData = e.target.parentElement
+    const formData = e.target.parentElement.parentElement
     const formOBJ = {
       username: formData.username.value,
       sign: formData.sign.value
@@ -68,7 +70,10 @@ document.addEventListener('DOMContentLoaded', () =>{
         return renderConvertedReadingList(user.id)
 
       })
+  }
 
+  function getTeams(){
+    return fetch(teamURL).then(r => r.json())
   }
 
   // END FETCH REQUEST BLOCK
@@ -102,33 +107,52 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function createForm(){
     const navBar = document.getElementById('nav')
-    const formBar = document.getElementById('form-bar')
+
+    // const formBar = document.getElementById('form-bar')
+
+    const usernameDiv = document.createElement('div')
+      usernameDiv.classList.add('form-group')
+    const dropdownDiv = document.createElement('div')
+      usernameDiv.classList.add('form-group')
+    const submitDiv = document.createElement('div')
+      usernameDiv.classList.add('form-group')
+
     const form = document.createElement('form')
+      form.classList.add('form-inline')
+      form.name = 'form'
     const usernameInput = document.createElement('input')
+      usernameInput.type = 'TEXT'
+      usernameInput.name = 'username'
+      usernameInput.placeholder = 'Your Username'
+      usernameInput.className = 'form-control mb-2 mr-sm-2 mb-sm-0'
     const submitBtn = document.createElement('button')
+      submitBtn.innerText = 'Get Multiverse Reading'
+      submitBtn.addEventListener('click', handleSubmit)
+      submitBtn.className = 'btn btn-primary mr-sm-2'
     const signSelect = document.createElement('select')
-    // const selectBar = document.getElementById('inlineFormCustomSelect')
-    const navbar = document.getElementById('nav')
-    navbar.appendChild(form)
-    form.name = 'form'
-    usernameInput.type = 'TEXT'
-    usernameInput.name = 'username'
-    usernameInput.placeholder = 'girrafe barf'
-    form.appendChild(usernameInput)
-
-    signSelect.name = 'sign'
-    signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
+      signSelect.name = 'sign'
+      signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
     const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
-    zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
-    form.appendChild(signSelect);
+      zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
 
+    usernameDiv.appendChild(usernameInput)
+    dropdownDiv.appendChild(signSelect)
+    submitDiv.appendChild(submitBtn)
 
-    submitBtn.innerText = 'Submit Bitches'
-    submitBtn.addEventListener('click', handleSubmit)
-    form.append(submitBtn)
+    form.append(usernameDiv, dropdownDiv, submitDiv)
 
-    formBar.appendChild(form)
-    navBar.appendChild(formBar)
+    renderOptionButtons()
+    navBar.appendChild(form)
+  }
+
+  function renderOptionButtons(){
+    const navBar = document.getElementById('nav')
+    const teamButton = document.createElement('button')
+      teamButton.innerText = 'Octothorpe Standings'
+      teamButton.className = 'btn btn-danger'
+      teamButton.addEventListener('click', revealTeamStandings)
+    navBar.appendChild(teamButton)
+
   }
 
   function renderConvertedReadingList(userID){
@@ -245,6 +269,37 @@ document.addEventListener('DOMContentLoaded', () =>{
         break;
       }
       return teamAssignment
+  }
+
+  function  revealTeamStandings(){
+    const display = document.getElementById('reading-display')
+      display.innerHTML = ''
+    getTeams().then(teams => {
+      teams.forEach(team => {
+
+        const teamCard = document.createElement('div')
+          teamCard.classList.add('card')
+
+        const bodyDiv = document.createElement('div')
+          bodyDiv.classList.add('card-body')
+        const headerDiv = document.createElement('div')
+          headerDiv.classList.add('card-header')
+
+        const teamName = document.createElement('h2')
+          teamName.innerText= team.name
+          teamName.classList.add('card-title')
+        const teamMotto = document.createElement('p')
+          teamMotto.innerText = team.motto
+        const teamScore = document.createElement('h3')
+          teamScore.innerText = `Score: ${team.converteds.length}`
+
+        headerDiv.appendChild(teamName)
+        bodyDiv.append(teamMotto, teamScore)
+        teamCard.append(headerDiv, bodyDiv)
+        display.appendChild(teamCard)
+
+      })
+    })
   }
 
 

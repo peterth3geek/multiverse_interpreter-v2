@@ -11,7 +11,7 @@
 .scroll-div {
   overflow: scroll;
   overflow-y: scroll;
-  max-height: 90vh;
+  max-height: 85vh;
 }
 
 /* // .col-4 {
