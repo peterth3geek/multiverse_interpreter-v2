@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', createForm)
 
   function createForm(){
     const navBar = document.getElementById('nav')
+    const theAlert = document.getElementById('validation-alert')
+      theAlert.hidden = true
 
     const usernameDiv = document.createElement('div')
       usernameDiv.classList.add('form-group')

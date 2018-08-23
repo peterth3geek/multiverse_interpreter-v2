@@ -50,7 +50,19 @@ class Adapter {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(userOBJ)
-    }).then(res => res.json())
+    }).then(res => {
+      return res.json().then(r => {
+        if (typeof r.username === 'object'){
+          const theAlert = document.getElementById('validation-alert')
+          r.username.forEach(error =>{
+            theAlert.innerText = `Your username ${error}`
+          })
+          theAlert.hidden = false
+      } else {
+        return r
+      }
+    })
+  })
   }
 
   static saveReading(sign, userId){
@@ -77,7 +89,10 @@ class Adapter {
   }
 
   static handleSubmit(e){
+
     e.preventDefault()
+    const theAlert = document.getElementById('validation-alert')
+      theAlert.hidden = true
     const formData = e.target.parentElement.parentElement
     const formOBJ = {
       username: formData.username.value,
@@ -85,7 +100,6 @@ class Adapter {
     }
     Adapter.saveUser(formOBJ)
       .then(user => {
-        // currentUserId = user.id
         Adapter.saveReading(user.sign, user.id)
         return Generator.renderConvertedReadingList(user.id)
 
