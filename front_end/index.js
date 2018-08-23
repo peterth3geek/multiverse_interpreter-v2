@@ -1,9 +1,4 @@
-document.addEventListener('DOMContentLoaded', () =>{
-
-  createForm()
-
-  // Front End Data Appending
-
+document.addEventListener('DOMContentLoaded', createForm)
 
   function createForm(){
     const navBar = document.getElementById('nav')
@@ -60,16 +55,3 @@ document.addEventListener('DOMContentLoaded', () =>{
     navBar.appendChild(teamButton)
 
   }
-
-
-
-
-  // function showSingleReading(e){
-  //   console.log(e.target.dataset);
-  // }
-  //
-  // function handleReadings(e){
-  //   console.log(e);
-  // }
-
-})
