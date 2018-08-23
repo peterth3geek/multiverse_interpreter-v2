@@ -138,22 +138,28 @@ document.addEventListener('DOMContentLoaded', () =>{
     getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
         if (reading.user.id === userID){
-          const littleDiv = document.createElement('div')
-
-          littleDiv.id = `user-reading${reading.id}`
-          littleDiv.classList.add('card')
-          littleDiv.classList.add('mb-2')
-          // littleDiv.style = 'width: 18rem;'
+          // Create Card Elements
+          const cardDiv = document.createElement('div')
+            cardDiv.id = `user-reading${reading.id}`
+            cardDiv.classList.add('card')
+          const headerDiv = document.createElement('div')
+            headerDiv.id = `image-${reading.id}`
+            headerDiv.classList.add('card-header')
+          const bodyDiv = document.createElement('div')
+            bodyDiv.id = `body-${reading.id}`
+            bodyDiv.classList.add('card-body')
+          // Card Header Data
+          const image = document.createElement('img')
+          // Card Body Data
           const ul = document.createElement('ul')
-          ul.classList.add('card-body')
+          // Card List Data
           const team = document.createElement('li')
           const teamMotto = document.createElement('li')
           const cosmicAddress = document.createElement('li')
           const warning = document.createElement('li')
           const rundown = document.createElement('li')
           const compatibility = document.createElement('li')
-          const image = document.createElement('img')
-
+          // Make Teams
           if (reading.team === null){
             team.innerText = "No team Assigned"
             teamMotto.innerText = ''
@@ -161,17 +167,21 @@ document.addEventListener('DOMContentLoaded', () =>{
             team.innerText = reading.team.name
             teamMotto.innerText = reading.team.motto
           }
+          // Fill Data
           cosmicAddress.innerHTML = reading.universe_id
           warning.innerText = reading.time_warning
           rundown.innerText = reading.description
           compatibility.innerText = reading.compatibility
           image.src = reading.gif_url
-
-
-          ul.append(image, warning, rundown, compatibility, team, teamMotto, cosmicAddress)
-
-          littleDiv.appendChild(ul)
-          fullList.appendChild(littleDiv)
+          // Append Data to Sub-Body
+          ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress)
+          // Append Card Data
+          headerDiv.appendChild(image)
+          bodyDiv.appendChild(ul)
+          // Append to Card
+          cardDiv.append(headerDiv, bodyDiv)
+          // Append to Column
+          fullList.appendChild(cardDiv)
         }
       })
     })
