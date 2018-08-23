@@ -280,12 +280,13 @@ document.addEventListener('DOMContentLoaded', () =>{
   function  revealTeamStandings(){
     const display = document.getElementById('reading-display')
       display.innerHTML = ''
+      display.classList.add('center')
     getTeams().then(teams => {
       teams.sort((a, b) => b.converteds.length - a.converteds.length).forEach(team => {
 
         const teamCard = document.createElement('div')
-          teamCard.classList.add('card')
-          teamCard.classList.add('octothorpe-card')
+          // teamCard.classList.add('card')
+          teamCard.className = 'card octothorpe center'
 
         const bodyDiv = document.createElement('div')
           bodyDiv.classList.add('card-body')
@@ -298,6 +299,7 @@ document.addEventListener('DOMContentLoaded', () =>{
           teamName.classList.add('center')
         const teamMotto = document.createElement('p')
           teamMotto.innerText = team.motto
+          teamMotto.classList.add('card-text')
         // const teamScore = document.createElement('h3')
         //   teamScore.innerText = ``
 

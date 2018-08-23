@@ -6,6 +6,7 @@
 .center {
   vertical-align: middle;
   text-align: center;
+
 }
 
 .scroll-div {
@@ -14,8 +15,9 @@
   max-height: 95vh;
 }
 
-.octothorpe-card{
-  width: 25vw;
+.card.octothorpe{
+  width: 30vw;
+
 }
 
 /* // .col-4 {
