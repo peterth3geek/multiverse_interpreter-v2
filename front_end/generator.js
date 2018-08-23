@@ -6,6 +6,7 @@ class Generator{
     fullList.innerText = ''
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
+        console.log(reading)
         if (reading.user.id === userID){
           // Create Card Elements
           const cardDiv = document.createElement('div')
@@ -56,11 +57,7 @@ class Generator{
               bodyDiv.className = `card-header card-header-${reading.team.id}`
 
             }
-          const cosmicAddress = document.createElement('li')
-            let cosmicAddressText = reading.universe_id
-            cosmicAddressText = cosmicAddressText.substring(cosmicAddressText.indexOf("<") + 1);
-            cosmicAddress.innerHTML = cosmicAddressText
-          const warning = document.createElement('li')
+            cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
             warning.innerText = reading.time_warning
             rundown.innerText = reading.description
             compatibility.innerText = reading.compatibility
@@ -77,7 +74,8 @@ class Generator{
             deleteBtn.addEventListener('click', Adapter.deleteReading)
 
           // Append Data to Sub-Body
-          ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
+          // ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
+          ul.append(team, cosmicAddress, viewBtn, deleteBtn)
           // Append Card Data
           headerDiv.appendChild(image)
           bodyDiv.appendChild(ul)
