@@ -46,7 +46,6 @@ class Adapter {
 
   static saveUser(userOBJ){
     const userURL = 'http://localhost:3000/users'
-
     return fetch(userURL, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -144,6 +143,12 @@ class Adapter {
     return fetch(`${convertedURL}/${readingID}`, {
       method: 'DELETE'
     })
+  }
+
+  static getUsers(){
+    const userURL = 'http://localhost:3000/users'
+
+    return fetch(userURL).then(r => r.json())
   }
 
   static viewReading(e){

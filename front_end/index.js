@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', createForm)
 
- // var currentUserId = ""
+//Global Variables
 
   function createForm(){
     const navBar = document.getElementById('nav')
@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', createForm)
       submitBtn.addEventListener('click', Adapter.handleSubmit)
       submitBtn.className = 'btn btn-primary mr-sm-2 micro-margin'
     const signSelect = document.createElement('select')
+      const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
       signSelect.name = 'sign'
       signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
-    const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
       zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
     const readingsBtn = document.createElement('button')
       readingsBtn.innerText = 'All My Readings'
