@@ -98,6 +98,7 @@ class Generator{
 
       const bigDiv = document.createElement('div')
         bigDiv.className = 'card'
+        bigDiv.id = `user-reading-${reading.id}`
       const ul = document.createElement('div')
         ul.className = `card-body`
 
@@ -132,7 +133,7 @@ class Generator{
         deleteBtn.innerText = 'Delete'
         deleteBtn.className = 'btn btn-danger'
         deleteBtn.addEventListener('click', Adapter.deleteReading)
-        deleteBtn.addEventListener('click', function () { body.innerText = '' })
+        deleteBtn.addEventListener('click', () => body.innerHTML = '' )
 
 
       ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
@@ -142,7 +143,14 @@ class Generator{
   static  revealTeamStandings(){
     const display = document.getElementById('reading-display')
       display.innerHTML = ''
-      display.className = 'center scroll-div'
+      display.className = 'center'
+    const otherDiv = document.createElement('div')
+      otherDiv.className = 'scroll-div-2'
+    const titleCard = document.createElement('div')
+      titleCard.className = 'center card-header-1 card octothorpe card-title mx-auto'
+    const cardHeader = document.createElement('h1')
+      cardHeader.innerText = 'Galactic Octothorpe Standings'
+
     Adapter.getTeams().then(teams => {
       teams.sort((a, b) => b.converteds.length - a.converteds.length).forEach(team => {
 
@@ -166,10 +174,13 @@ class Generator{
         const teamScore = document.createElement('h5')
           teamScore.innerText = `Pledges: ${team.converteds.length}`
 
+          titleCard.appendChild(cardHeader)
+          display.appendChild(titleCard)
         headerDiv.append(teamName, teamScore)
         bodyDiv.append(teamMotto)
         teamCard.append(headerDiv, bodyDiv)
-        display.appendChild(teamCard)
+        otherDiv.appendChild(teamCard)
+        display.appendChild(otherDiv)
 
       })
     })
@@ -177,7 +188,21 @@ class Generator{
 
   static hideReading(readingID){
     const reading = document.getElementById(`user-reading-${readingID}`)
-    reading.hidden = true
+    const body = document.getElementById('reading-display')
+    const childCount = body.childElementCount
+
+    if (readingID){
+      reading.hidden = true
+      // body.className = 'center'
+    } else if (readingID && childCount === 0){
+      Generator.revealTeamStandings()
+    }
+    else {
+      body.className = 'center'
+    }
+    if (childCount >= 2 || childCount <= 0){
+    Generator.revealTeamStandings()
+  }
   }
 
 }

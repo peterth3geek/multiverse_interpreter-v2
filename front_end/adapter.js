@@ -109,6 +109,8 @@ class Adapter {
 
   static handleReadings(e){
     e.preventDefault()
+    const theAlert = document.getElementById('validation-alert')
+      theAlert.hidden = true
     const formData = e.target.parentElement.parentElement
 
     const formOBJ = {
@@ -133,13 +135,15 @@ class Adapter {
     const readingID = e.target.dataset.id
     const convertedURL = 'http://localhost:3000/converteds'
     //Delete main display if needed
-    let displayId = document.getElementById('delReading')
-    if ((displayId != null) && (displayId.getAttribute("data-id"))===(readingID)) {
-    document.getElementById('reading-display').innerText = ''
-  }
+    // Optimistically Render
+    Generator.hideReading(readingID)
+  //   let displayId = document.getElementById('delReading')
+  //   if ((displayId != null) && (displayId.getAttribute("data-id"))===(readingID)) {
+  //   document.getElementById('reading-display').innerText = ''
+  // }
     return fetch(`${convertedURL}/${readingID}`, {
       method: 'DELETE'
-    }).then(Generator.hideReading(readingID))
+    })
   }
 
   static viewReading(e){
