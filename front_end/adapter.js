@@ -93,6 +93,7 @@ class Adapter {
     e.preventDefault()
     const theAlert = document.getElementById('validation-alert')
       theAlert.hidden = true
+    const sideBar = document.getElementById('sidebar-data')
     const formData = e.target.parentElement.parentElement
     const formOBJ = {
       username: formData.username.value,
@@ -101,8 +102,9 @@ class Adapter {
     Adapter.saveUser(formOBJ)
       .then(user => {
         Adapter.saveReading(user.sign, user.id)
-        return Generator.renderConvertedReadingList(user.id)
-
+      //   if(sideBar.childElementCount === 0 ){
+      //   return Generator.renderConvertedReadingList(user.id)
+      // }
       })
   }
 
@@ -136,10 +138,10 @@ class Adapter {
     //Delete main display if needed
     // Optimistically Render
     Generator.hideReading(readingID)
-  //   let displayId = document.getElementById('delReading')
-  //   if ((displayId != null) && (displayId.getAttribute("data-id"))===(readingID)) {
-  //   document.getElementById('reading-display').innerText = ''
-  // }
+    let displayId = document.getElementById('delReading')
+    if ((displayId != null) && (displayId.getAttribute("data-id"))===(readingID)) {
+    document.getElementById('reading-display').innerText = ''
+  }
     return fetch(`${convertedURL}/${readingID}`, {
       method: 'DELETE'
     })

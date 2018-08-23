@@ -135,7 +135,10 @@ class Generator{
         deleteBtn.innerText = 'Delete'
         deleteBtn.className = 'btn btn-danger'
         deleteBtn.addEventListener('click', Adapter.deleteReading)
-        deleteBtn.addEventListener('click', () => body.innerHTML = '' )
+        deleteBtn.addEventListener('click', () => {
+          body.innerHTML = ''
+          return Generator.revealTeamStandings()
+        })
 
       const compatBtn = document.createElement('button')
       compatBtn.dataset.id = reading.user.id
@@ -199,18 +202,17 @@ class Generator{
     const body = document.getElementById('reading-display')
     const childCount = body.childElementCount
 
-    if (readingID){
-      reading.hidden = true
-      // body.className = 'center'
-    } else if (readingID && childCount === 0){
+    if (null){
       Generator.revealTeamStandings()
+    } else if (reading){
+      reading.hidden = true
     }
     else {
       body.className = 'center'
     }
-    if (childCount >= 2 || childCount <= 0){
-    Generator.revealTeamStandings()
-  }
+  //   if (childCount >= 2 || childCount <= 0){
+  //   Generator.revealTeamStandings()
+  // }
   }
 
   static getCompats(e) {
