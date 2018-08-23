@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function renderReading(reading){
       const body = document.getElementById('reading-display')
-      body.innerText = ''
+        body.classList.remove('center')
+        body.innerText = ''
       const ul = document.createElement('ul')
 
       const team = document.createElement('li')
@@ -300,24 +301,24 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         const teamCard = document.createElement('div')
           // teamCard.classList.add('card')
-          teamCard.className = 'card octothorpe center'
+          teamCard.className = 'card octothorpe center mx-auto'
 
         const bodyDiv = document.createElement('div')
           bodyDiv.classList.add('card-body')
         const headerDiv = document.createElement('div')
-          headerDiv.classList.add('card-header')
+          headerDiv.classList.add(`card-header-${team.id}`)
 
         const teamName = document.createElement('h2')
-          teamName.innerHTML= `${team.name}<br>Score: ${team.converteds.length}`
+          teamName.innerText= `${team.name}`
           teamName.classList.add('card-title')
           teamName.classList.add('center')
         const teamMotto = document.createElement('p')
           teamMotto.innerText = team.motto
           teamMotto.classList.add('card-text')
-        // const teamScore = document.createElement('h3')
-        //   teamScore.innerText = ``
+        const teamScore = document.createElement('h5')
+          teamScore.innerText = `Pledges: ${team.converteds.length}`
 
-        headerDiv.appendChild(teamName)
+        headerDiv.append(teamName, teamScore)
         bodyDiv.append(teamMotto)
         teamCard.append(headerDiv, bodyDiv)
         display.appendChild(teamCard)

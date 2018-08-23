@@ -13,12 +13,41 @@
   overflow: scroll;
   overflow-y: scroll;
   max-height: 95vh;
+  height: 95vw;
 }
 
 .card.octothorpe{
-  width: 30vw;
-
+  width: 50vw;
 }
+
+.card-header-1{
+  background: teal;
+}
+.card-header-2{
+  background: red;
+}
+.card-header-3{
+  background: blue;
+}
+.card-header-4{
+  background: yellow;
+}
+.card-header-5{
+  background: green;
+}
+.card-header-6{
+  background: orange;
+}
+.card-header-7{
+  background: purple;
+}
+.card-header-8{
+  background: gray;
+}
+.card-header-9{
+  background: white;
+}
+
 
 /* // .col-4 {
 //   overflow-y: scroll; // Only add scroll to vertical column
