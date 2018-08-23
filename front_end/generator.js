@@ -116,12 +116,14 @@ class Generator{
       const image = document.createElement('img')
       image.className = "large-gif"
 
-      team.innerText = reading.team.name
-      teamMotto.innerText = reading.team.motto
-      cosmicAddress.innerHTML = reading.universe_id
-      warning.innerText = reading.time_warning
-      rundown.innerText = reading.description
-      compatibility.innerText = reading.compatibility
+      team.innerHTML = `<b>Team name: </b>${reading.team.name}<br>
+      "${reading.team.motto}"
+      `
+      teamMotto.innerText = `"${reading.team.motto}"`
+      cosmicAddress.innerHTML = `<b>Cosmic Address:</b><br>${reading.universe_id}`
+      warning.innerHTML = `<b>Your Fortune:</b> ${reading.time_warning}`
+      rundown.innerHTML = `<b>Your Horoscope:</b> ${reading.description}`
+      compatibility.innerHTML = `<b>Compatibility: </b>${reading.compatibility}`
       image.src = reading.gif_url
 
       const deleteBtn = document.createElement('button')
@@ -133,7 +135,7 @@ class Generator{
         deleteBtn.addEventListener('click', function () { body.innerText = '' })
 
 
-      ul.append(image, warning, rundown, compatibility, team, teamMotto, cosmicAddress, deleteBtn)
+      ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
       body.appendChild(ul)
   }
 
