@@ -113,6 +113,8 @@ class Generator{
       rundown.className = 'rundown-p'
       const compatibility = document.createElement('p')
       compatibility.className = 'comp-p'
+      compatibility.id = 'currentCompat'
+      compatibility.dataset.id = reading.compatibility
       const image = document.createElement('img')
       image.className = "large-gif"
 
@@ -134,8 +136,14 @@ class Generator{
         deleteBtn.addEventListener('click', Adapter.deleteReading)
         deleteBtn.addEventListener('click', function () { body.innerText = '' })
 
+      const compatBtn = document.createElement('button')
+      compatBtn.dataset.id = reading.user.id
+      compatBtn.id = 'compatBtn'
+      compatBtn.innerText = 'Compatibility'
+      compatBtn.className = 'btn btn-info'
+      compatBtn.addEventListener('click', Generator.getCompats)
 
-      ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
+      ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn, compatBtn)
       body.appendChild(ul)
   }
 
@@ -180,4 +188,21 @@ class Generator{
     reading.hidden = true
   }
 
+  static getCompats(e) {
+    let currentUser = e.target.dataset.id
+    let compatSign = document.getElementById('currentCompat')
+    console.log("currentUser")
+    console.log(currentUser)
+    console.log("compatSign")
+    console.log(compatSign.getAttribute("data-id"))
+    Adapter.getUsers().then(users => {
+      users.forEach(user => {
+        console.log(user)
+        console.log(user.id)
+        if (!(currentUser == user.id)) {
+          console.log("This is not you!")
+        }
+      })
+    })
+  }
 }
