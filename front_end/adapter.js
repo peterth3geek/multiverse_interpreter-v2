@@ -74,7 +74,7 @@ class Adapter {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(readingObject)
-    }).then(r => r.json()).then(console.log)
+    }).then(r => r.json())
   }
 
   static handleSubmit(e){
@@ -131,7 +131,7 @@ class Adapter {
   static viewReading(e){
     const readingID = e.target.dataset.id
     const convertedURL = 'http://localhost:3000/converteds'
-    return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(e => Generator.renderReading(e))
+    return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 
   // END FETCH REQUEST BLOCK

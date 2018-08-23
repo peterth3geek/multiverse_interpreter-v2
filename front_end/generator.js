@@ -27,8 +27,8 @@ class Generator{
             image.src = reading.gif_url
             image.className = 'fit-gif'
           const createdAt = document.createElement('p')
+            createdAt.className = 'createdAt-p'
           const team = document.createElement('p')
-            team.className = 'createdAt-p'
             team.className = 'team-p'
           const teamMotto = document.createElement('p')
             teamMotto.className = 'team-p'
