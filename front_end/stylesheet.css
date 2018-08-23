@@ -165,6 +165,20 @@ img {
   border: 1px solid;
 }
 
+#document-body{
+   background-image: url("http://cdn.osxdaily.com/wp-content/uploads/2014/03/cosmos-space-wallpaper-3.jpg");
+   background-size: cover;
+}
+
+#nav{
+  /* border: 3px solid #a0ecff;
+   border-radius: 4px; */
+   /* background: #a0ecff */
+   background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0), to(#330867));
+ background-image: -webkit-linear-gradient(bottom, white 0%, #330867 100%);
+ background-image: linear-gradient(to top, white 0%, #330867 100%, opacity: 0.3);
+}
+
 .column {
    float: left;
    padding: 10px;
