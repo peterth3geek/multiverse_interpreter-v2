@@ -2,3 +2,8 @@
   color: red;
   /* font-size: 125px; */
 }
+
+.scroll-div{
+  overflow: scroll;
+  max-height: 80vh;
+}
