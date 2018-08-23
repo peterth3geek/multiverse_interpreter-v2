@@ -107,25 +107,36 @@ document.addEventListener('DOMContentLoaded', () =>{
     const usernameInput = document.createElement('input')
     const submitBtn = document.createElement('button')
     const signSelect = document.createElement('select')
+    const selectDiv1 = document.createElement('div')
+    const selectDiv2 = document.createElement('div')
+    const selectDiv3 = document.createElement('div')
+
     // const selectBar = document.getElementById('inlineFormCustomSelect')
     const navbar = document.getElementById('nav')
     navbar.appendChild(form)
     form.name = 'form'
+    form.className = 'form-inline'
+    selectDiv1.className = 'col-2'
+    selectDiv2.className = 'col-2'
+    selectDiv3.className = 'col-2'
     usernameInput.type = 'TEXT'
+    usernameInput.className = 'form-control form-control-sm mb-2 mr-sm-2 mb-sm-0'
     usernameInput.name = 'username'
-    usernameInput.placeholder = 'girrafe barf'
-    form.appendChild(usernameInput)
-
+    usernameInput.placeholder = 'Name'
+    selectDiv1.appendChild(usernameInput)
+    form.appendChild(selectDiv1)
     signSelect.name = 'sign'
-    signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
+    signSelect.className = 'custom-select custom-select-sm mb-2 mr-sm-2 mb-sm-0'
     const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
     zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
-    form.appendChild(signSelect);
+    selectDiv2.appendChild(signSelect);
+    form.appendChild(selectDiv2)
 
-
-    submitBtn.innerText = 'Submit Bitches'
+    submitBtn.className = 'form-control-sm'
+    submitBtn.innerText = 'Submit'
     submitBtn.addEventListener('click', handleSubmit)
-    form.append(submitBtn)
+    selectDiv3.appendChild(submitBtn);
+    form.append(selectDiv3)
 
     formBar.appendChild(form)
     navBar.appendChild(formBar)

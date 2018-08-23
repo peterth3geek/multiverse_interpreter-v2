@@ -25,6 +25,11 @@
   border: 1px solid;
 }
 
+#form-bar {
+  width: 90vw;
+  border: 1px solid;
+}
+
 .column {
    float: left;
    padding: 10px;
