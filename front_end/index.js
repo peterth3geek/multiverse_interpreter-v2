@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', createForm)
     const submitBtn = document.createElement('button')
       submitBtn.innerText = 'Get Multiverse Reading'
       submitBtn.addEventListener('click', Adapter.handleSubmit)
-      submitBtn.className = 'btn btn-primary mr-sm-2'
+      submitBtn.className = 'btn btn-primary mr-sm-2 micro-margin'
     const readingsBtn = document.createElement('button')
         readingsBtn.innerText = 'All My Readings'
         readingsBtn.addEventListener('click', Adapter.handleReadings)
