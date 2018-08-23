@@ -95,8 +95,8 @@ class Adapter {
 
   static handleReadings(e){
     e.preventDefault()
-
     const formData = e.target.parentElement.parentElement
+
     const formOBJ = {
       username: formData.username.value,
       sign: formData.sign.value
@@ -118,7 +118,11 @@ class Adapter {
   static deleteReading(e){
     const readingID = e.target.dataset.id
     const convertedURL = 'http://localhost:3000/converteds'
-
+    //Delete main display if needed
+    let displayId = document.getElementById('delReading')
+    if ((displayId != null) && (displayId.getAttribute("data-id"))===(readingID)) {
+    document.getElementById('reading-display').innerText = ''
+  }
     return fetch(`${convertedURL}/${readingID}`, {
       method: 'DELETE'
     }).then(Generator.hideReading(readingID))
@@ -127,7 +131,6 @@ class Adapter {
   static viewReading(e){
     const readingID = e.target.dataset.id
     const convertedURL = 'http://localhost:3000/converteds'
-console.log(readingID)
     return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 

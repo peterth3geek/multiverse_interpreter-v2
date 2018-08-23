@@ -10,7 +10,6 @@ class Converter {
     //end of Time Warning Code
     let randNum = Math.floor(Math.random()*20)
     Adapter.getGiphy(e.mood).then(pic => {
-      console.log(pic.data[0].images)
        return pic.data[randNum].images.original.url
     }).then(image => {
       const teamNumber = Converter.assignTeam(e.color)

@@ -61,7 +61,8 @@ class ConvertedsController < ApplicationController
       address = "#{address_street} #{address_suffix}<br>#{address_city}, #{address_country} #{address_zip}<br>Planet #{address_planet}"
 
 
-      c_params = params.require(:converted).permit(:gif_url, :team_id, :universe_id, :time_warning, :compatibility, :user_id, :description)
+      # c_params = params.require(:converted).permit(:gif_url, :team_id, :universe_id, :time_warning, :compatibility, :user_id, :description)
+      c_params = params.require(:converted).permit!
       c_params[:team_id] = c_params[:team_id].to_i
       c_params[:universe_id] = "#{c_params[:universe_id]} #{address}"
       c_params

@@ -9,6 +9,11 @@ img {
   /* font-size: 125px; */
 }
 
+.reduce-size{
+  height: 75vh;
+  width: 75vw;
+}
+
 .center {
   vertical-align: middle;
   text-align: center;
@@ -19,6 +24,15 @@ img {
   height: 20vh;
   object-fit: cover;
   align-content: center;
+}
+
+.large-gif{
+  width: 100vw;
+  height: 50vh;
+  object-fit: cover;
+  align-content: center;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 
 .scroll-div {
@@ -71,6 +85,9 @@ img {
 .micro-margin{
   margin: 1vh;
 }
+.micro-padding{
+  padding: 1vh;
+}
 
 
 .team-p{
@@ -95,6 +112,13 @@ img {
 }
 
 .warning-p{
+  background-color: #b9ead1;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.createdAt-p{
   background-color: #b9ead1;
   text-align: justify;
   text-justify: inter-word;
