@@ -104,8 +104,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     const formBar = document.getElementById('form-bar')
     const form = document.createElement('form')
     const usernameInput = document.createElement('input')
-    const signInput = document.createElement('input')
     const submitBtn = document.createElement('button')
+    const signSelect = document.createElement('select')
+    // const selectBar = document.getElementById('inlineFormCustomSelect')
     const navbar = document.getElementById('nav')
     navbar.appendChild(form)
     form.name = 'form'
@@ -114,10 +115,12 @@ document.addEventListener('DOMContentLoaded', () =>{
     usernameInput.placeholder = 'girrafe barf'
     form.appendChild(usernameInput)
 
-    signInput.type = 'TEXT'
-    signInput.name = 'sign'
-    signInput.placeholder = 'Leo bitches'
-    form.appendChild(signInput)
+    signSelect.name = 'sign'
+    signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
+    const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+    zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
+    form.appendChild(signSelect);
+
 
     submitBtn.innerText = 'Submit Bitches'
     submitBtn.addEventListener('click', handleSubmit)
