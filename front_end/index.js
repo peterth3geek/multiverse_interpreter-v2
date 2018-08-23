@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   function renderConvertedReadingList(userID){
     const fullList = document.getElementById('sidebar-data')
-    fullList.classList.add('scroll-div')
+    // fullList.classList.add('scroll-div')
     fullList.innerHTML = ''
     getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {

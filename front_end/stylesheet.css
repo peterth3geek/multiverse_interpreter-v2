@@ -14,9 +14,12 @@
   max-height: 90vh;
 }
 
-.col-4 {
-  overflow-y: scroll; // Only add scroll to vertical column
-}
+/* // .col-4 {
+//   overflow-y: scroll; // Only add scroll to vertical column
+//   overflow: scroll;
+//   max-height: 90vh;
+//   height: 500px;
+// } */
 
 #sidebar-data {
   border: 1px solid;
@@ -34,7 +37,7 @@
  .column.middle {
    width: 70vw;
  }
-
+/*
  .card {
    position: relative;
    display: flex;
@@ -62,4 +65,4 @@
        @include border-bottom-radius($card-border-radius);
      }
    }
- }
+ } */
