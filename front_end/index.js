@@ -142,7 +142,8 @@ document.addEventListener('DOMContentLoaded', () =>{
 
           littleDiv.id = `user-reading${reading.id}`
           littleDiv.classList.add('card')
-          littleDiv.style = 'width: 18rem;'
+          littleDiv.classList.add('mb-2')
+          // littleDiv.style = 'width: 18rem;'
           const ul = document.createElement('ul')
           ul.classList.add('card-body')
           const team = document.createElement('li')

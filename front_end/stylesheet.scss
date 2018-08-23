@@ -10,9 +10,13 @@
 
 .scroll-div {
   overflow: scroll;
+  overflow-y: scroll;
   max-height: 90vh;
 }
 
+.col-4 {
+  overflow-y: scroll; // Only add scroll to vertical column
+}
 
 #sidebar-data {
   border: 1px solid;
@@ -21,7 +25,9 @@
 .column {
    float: left;
    padding: 10px;
+   overflow: scroll;
  }
+
  .column.side {
    width: 30vw;
  }
