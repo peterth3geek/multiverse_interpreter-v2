@@ -57,8 +57,7 @@ class Generator{
               bodyDiv.className = `card-header card-header-${reading.team.id}`
 
             }
-
-            cosmicAddress.innerHTML = reading.universe_id
+            cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
             warning.innerText = reading.time_warning
             rundown.innerText = reading.description
             compatibility.innerText = reading.compatibility
@@ -75,7 +74,8 @@ class Generator{
             deleteBtn.addEventListener('click', Adapter.deleteReading)
 
           // Append Data to Sub-Body
-          ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
+          // ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
+          ul.append(team, cosmicAddress, viewBtn, deleteBtn)
           // Append Card Data
           headerDiv.appendChild(image)
           bodyDiv.appendChild(ul)
@@ -89,7 +89,6 @@ class Generator{
   }
 
   static renderReading(reading){
-    console.log(reading)
       const body = document.getElementById('reading-display')
         body.className = 'center'
         body.innerText = ''
@@ -118,16 +117,20 @@ class Generator{
       compatibility.innerText = reading.compatibility
       image.src = reading.gif_url
 
-      const viewBtn = document.createElement('button')
-        viewBtn.innerText = "View"
-        viewBtn.className = 'btn btn-info'
-        viewBtn.addEventListener('click', console.log)
+      // const viewBtn = document.createElement('button')
+      //   viewBtn.innerText = "View"
+      //   viewBtn.className = 'btn btn-info'
+      //   viewBtn.addEventListener('click', console.log)
       const deleteBtn = document.createElement('button')
+        deleteBtn.dataset.id = reading.id
+        deleteBtn.id = 'delReading'
         deleteBtn.innerText = 'Delete'
         deleteBtn.className = 'btn btn-danger'
-        deleteBtn.addEventListener('click', console.log)
+        deleteBtn.addEventListener('click', Adapter.deleteReading)
+        deleteBtn.addEventListener('click', function () { body.innerText = '' })
 
-      ul.append(image, warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
+
+      ul.append(image, warning, rundown, compatibility, team, teamMotto, cosmicAddress, deleteBtn)
       body.appendChild(ul)
   }
 
