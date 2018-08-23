@@ -118,6 +118,13 @@ img {
   padding: 9px
 }
 
+.createdAt-p{
+  background-color: #b9ead1;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
 .rundown-p{
   background-color: #f2bfed;
   text-align: justify;
