@@ -59,7 +59,8 @@ class Generator{
 
             }
             cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
-            createdAt.innerHTML = reading.created_at
+            let createdAtDate = new Date(reading.created_at)
+            createdAt.innerHTML = createdAtDate.toString()
             warning.innerText = reading.time_warning
             rundown.innerText = reading.description
             compatibility.innerText = reading.compatibility
