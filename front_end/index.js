@@ -274,10 +274,11 @@ document.addEventListener('DOMContentLoaded', () =>{
     const display = document.getElementById('reading-display')
       display.innerHTML = ''
     getTeams().then(teams => {
-      teams.forEach(team => {
+      teams.sort((a, b) => b.converteds.length - a.converteds.length).forEach(team => {
 
         const teamCard = document.createElement('div')
           teamCard.classList.add('card')
+          teamCard.classList.add('octothorpe-card')
 
         const bodyDiv = document.createElement('div')
           bodyDiv.classList.add('card-body')
@@ -285,15 +286,16 @@ document.addEventListener('DOMContentLoaded', () =>{
           headerDiv.classList.add('card-header')
 
         const teamName = document.createElement('h2')
-          teamName.innerText= team.name
+          teamName.innerHTML= `${team.name}<br>Score: ${team.converteds.length}`
           teamName.classList.add('card-title')
+          teamName.classList.add('center')
         const teamMotto = document.createElement('p')
           teamMotto.innerText = team.motto
-        const teamScore = document.createElement('h3')
-          teamScore.innerText = `Score: ${team.converteds.length}`
+        // const teamScore = document.createElement('h3')
+        //   teamScore.innerText = ``
 
         headerDiv.appendChild(teamName)
-        bodyDiv.append(teamMotto, teamScore)
+        bodyDiv.append(teamMotto)
         teamCard.append(headerDiv, bodyDiv)
         display.appendChild(teamCard)
 

@@ -14,6 +14,10 @@
   max-height: 95vh;
 }
 
+.octothorpe-card{
+  width: 25vw;
+}
+
 /* // .col-4 {
 //   overflow-y: scroll; // Only add scroll to vertical column
 //   overflow: scroll;
