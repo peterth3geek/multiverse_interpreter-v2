@@ -14,6 +14,58 @@
   max-height: 95vh;
 }
 
+.team-p{
+  background-color: #d4ebf6;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.team-m{
+  background-color: #f0dada;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.cosmic-A{
+  background-color: #fcf7e0;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.warning-p{
+  background-color: #b9ead1;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.rundown-p{
+  background-color: #f2bfed;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.comp-p{
+  background-color: #f4d2b7;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 9px
+}
+
+.img-p{
+  /* position: absolute;
+   right: 200px;
+   width: 300px; */
+   
+  width: 60%;
+  length: 60%;
+    /* border: 3px solid #73AD21; */
+  padding: 10px
+}
 /* // .col-4 {
 //   overflow-y: scroll; // Only add scroll to vertical column
 //   overflow: scroll;

@@ -85,13 +85,20 @@ document.addEventListener('DOMContentLoaded', () =>{
       body.innerText = ''
       const ul = document.createElement('ul')
 
-      const team = document.createElement('li')
-      const teamMotto = document.createElement('li')
-      const cosmicAddress = document.createElement('li')
-      const warning = document.createElement('li')
-      const rundown = document.createElement('li')
-      const compatibility = document.createElement('li')
+      const team = document.createElement('p')
+      team.className = 'team-p'
+      const teamMotto = document.createElement('p')
+      teamMotto.className = 'team-p'
+      const cosmicAddress = document.createElement('p')
+      cosmicAddress.className = 'cosmic-A'
+      const warning = document.createElement('p')
+      warning.className = 'warning-p'
+      const rundown = document.createElement('p')
+      rundown.className = 'rundown-p'
+      const compatibility = document.createElement('p')
+      compatibility.className = 'comp-p'
       const image = document.createElement('img')
+      image.className = "img-p"
 
       team.innerText = reading.team.name
       teamMotto.innerText = reading.team.motto
@@ -183,12 +190,19 @@ document.addEventListener('DOMContentLoaded', () =>{
           // Card Body Data
           const ul = document.createElement('ul')
           // Card List Data
-          const team = document.createElement('li')
-          const teamMotto = document.createElement('li')
-          const cosmicAddress = document.createElement('li')
-          const warning = document.createElement('li')
-          const rundown = document.createElement('li')
-          const compatibility = document.createElement('li')
+          const team = document.createElement('p')
+          team.className = 'team-p'
+          const teamMotto = document.createElement('p')
+          teamMotto.className = 'team-p'
+          const cosmicAddress = document.createElement('p')
+          cosmicAddress.className = 'cosmic-A'
+          const warning = document.createElement('p')
+          warning.className = 'warning-p'
+          const rundown = document.createElement('p')
+          rundown.className = 'rundown-p'
+          const compatibility = document.createElement('p')
+          compatibility.className = 'comp-p'
+
           // Make Teams
           if (reading.team === null){
             team.innerText = "No team Assigned"
