@@ -1,3 +1,9 @@
+img {
+  max-width: 100%;
+  max-height: 100%;
+  align-content: space-between;
+}
+
 .list{
   color: red;
   /* font-size: 125px; */
@@ -8,11 +14,64 @@
   text-align: center;
 }
 
+.fit-gif{
+  width: 30vw;
+  height: 20vh;
+  object-fit: cover;
+  align-content: center;
+}
+
 .scroll-div {
   overflow: scroll;
   overflow-y: scroll;
   max-height: 95vh;
+  height: 95vw;
 }
+
+.card.octothorpe{
+  width: 50vw;
+  margin: 3vh;
+}
+
+.motto-body{
+  justify-content: center;
+}
+
+.card-header-1{
+  background: #3a98a2;
+}
+.card-header-2{
+  background: #d32626;
+}
+.card-header-3{
+  background: #f2ee1f;
+}
+.card-header-4{
+  background: #5788d6;
+}
+.card-header-5{
+  background: #35993f;
+}
+.card-header-6{
+  background: #e09443;
+}
+.card-header-7{
+  background: #803aa3;
+}
+.card-header-8{
+  background: #666666;
+}
+.card-header-9{
+  background: #d1d1d1;
+}
+
+.marginal{
+  margin: 3vh;
+}
+.micro-margin{
+  margin: 1vh;
+}
+
 
 .team-p{
   background-color: #d4ebf6;
