@@ -72,6 +72,20 @@ document.addEventListener('DOMContentLoaded', () =>{
       })
   }
 
+  function handleReadings(e){
+    e.preventDefault()
+    const formData = e.target.parentElement.parentElement
+    const formOBJ = {
+      username: formData.username.value,
+      sign: formData.sign.value
+    }
+
+    saveUser(formOBJ)
+      .then(user => {
+        return renderConvertedReadingList(user.id)
+      })
+  }
+
   function getTeams(){
     return fetch(teamURL).then(r => r.json())
   }
@@ -131,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () =>{
       submitBtn.className = 'btn btn-primary mr-sm-2'
     const readingsBtn = document.createElement('button')
         readingsBtn.innerText = 'All My Readings'
-        // readingsBtn.addEventListener('click', handleSubmit)
+        readingsBtn.addEventListener('click', handleReadings)
         readingsBtn.className = 'btn btn-primary mr-sm-2'
     const signSelect = document.createElement('select')
       signSelect.name = 'sign'
