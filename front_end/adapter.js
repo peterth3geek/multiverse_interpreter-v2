@@ -131,7 +131,7 @@ class Adapter {
   static viewReading(e){
     const readingID = e.target.dataset.id
     const convertedURL = 'http://localhost:3000/converteds'
-    return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
+    return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(e => Generator.renderReading(e))
   }
 
   // END FETCH REQUEST BLOCK
