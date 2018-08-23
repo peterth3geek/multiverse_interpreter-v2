@@ -1,3 +1,9 @@
+img {
+  max-width: 100%;
+  max-height: 100%;
+  align-content: space-between;
+}
+
 .list{
   color: red;
   /* font-size: 125px; */
@@ -6,7 +12,13 @@
 .center {
   vertical-align: middle;
   text-align: center;
+}
 
+.fit-gif{
+  width: 30vw;
+  height: 20vh;
+  object-fit: cover;
+  align-content: center;
 }
 
 .scroll-div {

@@ -25,6 +25,7 @@ class Generator{
           // Card Header Data
           const image = document.createElement('img')
             image.src = reading.gif_url
+            image.className = 'fit-gif'
 
           // Card Body Data
           const ul = document.createElement('ul')
