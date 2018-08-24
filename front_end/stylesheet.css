@@ -9,6 +9,18 @@ img {
   /* font-size: 125px; */
 }
 
+.logo-text{
+  color: #3a98a2;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 3vh;
+}
+.welcome-text{
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 3vh;
+  color: #d1d1d1;
+  background-color: #803aa3;
+}
+
 .reduce-size{
   height: 75vh;
   width: 75vw;

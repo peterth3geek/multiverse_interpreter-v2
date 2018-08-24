@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', welcome)
 
     const welcomePhrase = document.createElement('h2')
       welcomePhrase.innerText = 'Welcome to the Multiverse'
+      welcomePhrase.className = 'welcome-text'
       welcomeHeader.appendChild(welcomePhrase)
 
     const form = document.createElement('form')
