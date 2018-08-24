@@ -316,6 +316,7 @@ class Generator{
       usernameInput.name = 'username'
       usernameInput.placeholder = 'Create or Submit Your Username'
       usernameInput.className = 'form-control-lg micro-margin'
+      usernameInput.addEventListener('blur', Adapter.signAutoFind)
     const submitBtn = document.createElement('button')
       submitBtn.innerText = 'Get Multiverse Reading'
       submitBtn.addEventListener('click', Adapter.handleSubmitWelcome)
