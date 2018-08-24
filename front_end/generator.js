@@ -1,5 +1,95 @@
 class Generator{
 
+  static renderAllConvertedReadingList(userID){
+    const fullList = document.getElementById('sidebar-data')
+    // fullList.classList.add('scroll-div')
+    fullList.innerText = ''
+    Adapter.getAllConvertedReadings().then(list =>{
+      list.forEach(reading => {
+          // Create Card Elements
+          const cardDiv = document.createElement('div')
+            cardDiv.dataset.id = reading.id
+            cardDiv.id = `user-reading-${reading.id}`
+            cardDiv.className = `card marginal`
+          const headerDiv = document.createElement('div')
+            headerDiv.id = `image-${reading.id}`
+            headerDiv.dataset.id = reading.id
+
+          const bodyDiv = document.createElement('div')
+            bodyDiv.dataset.id = reading.id
+            bodyDiv.id = `body-${reading.id}`
+            bodyDiv.classList.add('card-body')
+          // Card Header Data
+          const image = document.createElement('img')
+            image.src = reading.gif_url
+            image.className = 'fit-gif'
+          const createdAt = document.createElement('p')
+            createdAt.className = 'createdAt-p'
+          const team = document.createElement('p')
+            team.className = 'team-p'
+          const teamMotto = document.createElement('p')
+            teamMotto.className = 'team-p'
+          const cosmicAddress = document.createElement('p')
+            cosmicAddress.className = 'cosmic-A'
+          const warning = document.createElement('p')
+            warning.className = 'warning-p'
+          const rundown = document.createElement('p')
+            rundown.className = 'rundown-p'
+          const compatibility = document.createElement('p')
+            compatibility.className = 'comp-p'
+          // Card Body Data
+          const ul = document.createElement('ul')
+          ul.style = 'font-size: 0.8rem;'
+          // Card List Data
+
+            if (reading.team === null){
+              team.innerText = "No team Assigned"
+              teamMotto.innerText = ''
+              headerDiv.className = `card-header card-header-1`
+              bodyDiv.className = `card-header card-header-1`
+
+            } else{
+              team.innerText = reading.team.name
+              teamMotto.innerText = reading.team.motto
+              headerDiv.className = `card-header card-header-${reading.team.id}`
+              bodyDiv.className = `card-header card-header-${reading.team.id}`
+
+            }
+            cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
+            let createdAtDate = new Date(reading.created_at)
+            createdAt.innerHTML = `
+            ${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}
+            `
+            warning.innerText = reading.time_warning
+            rundown.innerText = reading.description
+            compatibility.innerText = reading.compatibility
+
+          const viewBtn = document.createElement('button')
+            viewBtn.dataset.id = reading.id
+            viewBtn.innerText = "View"
+            viewBtn.className = 'btn btn-info'
+            viewBtn.addEventListener('click', Adapter.viewReading)
+          const deleteBtn = document.createElement('button')
+            deleteBtn.dataset.id = reading.id
+            deleteBtn.innerText = 'Delete'
+            deleteBtn.className = 'btn btn-danger'
+            deleteBtn.addEventListener('click', Adapter.deleteReading)
+
+          // Append Data to Sub-Body
+          // ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
+          ul.append(createdAt, team, cosmicAddress, viewBtn, deleteBtn)
+          // Append Card Data
+          headerDiv.appendChild(image)
+          bodyDiv.appendChild(ul)
+          // Append to Card
+          cardDiv.append(headerDiv, bodyDiv)
+          // Append to Column
+          fullList.appendChild(cardDiv)
+
+      })
+    })
+  }
+
   static renderConvertedReadingList(userID){
     const fullList = document.getElementById('sidebar-data')
     // fullList.classList.add('scroll-div')

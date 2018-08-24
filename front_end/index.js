@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', welcome)
     welcomeCard.append(welcomeHeader, welcomeBody)
     displayArea.appendChild(welcomeCard)
 
+    Generator.renderAllConvertedReadingList()
     return createForm()
 
   }
