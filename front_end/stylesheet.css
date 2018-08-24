@@ -126,10 +126,10 @@ img {
 }
 
 .name-p{
-  color: white;
+  background-color: #fdbbc7;
   text-align: justify;
   text-justify: inter-word;
-  padding: 0px
+  padding: 9px
 }
 
 .team-p{

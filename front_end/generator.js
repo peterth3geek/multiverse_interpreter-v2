@@ -128,7 +128,7 @@ class Generator{
       deleteBtn.addEventListener('click', Adapter.deleteReading)
 
     // Append Data to Sub-Body
-    bodyDiv.append(createdAt, team, cosmicAddress, viewBtn, deleteBtn)
+    bodyDiv.append(nameAndSign, createdAt, team, cosmicAddress, viewBtn, deleteBtn)
     // Append Card Data
     headerDiv.appendChild(image)
     // Append to Card
