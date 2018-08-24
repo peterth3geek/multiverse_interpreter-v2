@@ -19,6 +19,10 @@ img {
   text-align: center;
 }
 
+.welcome-card{
+  width: 62vw;
+}
+
 .fit-gif{
   width: 30vw;
   height: 20vh;
@@ -89,6 +93,7 @@ img {
 .marginal{
   margin: 3vh;
 }
+
 .micro-margin{
   margin: 1vh;
 }
