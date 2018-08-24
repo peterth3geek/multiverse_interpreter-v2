@@ -127,6 +127,7 @@ class Generator{
       warning.innerHTML = `<b>Your Fortune:</b> ${reading.time_warning}`
       rundown.innerHTML = `<b>Your Horoscope:</b> ${reading.description}`
       compatibility.innerHTML = `<b>Compatibility: </b>${reading.compatibility}`
+      compatibility.addEventListener('DOMContentLoaded', Generator.getCompats)
       image.src = reading.gif_url
 
       const deleteBtn = document.createElement('button')
@@ -149,6 +150,7 @@ class Generator{
 
       ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn, compatBtn)
       body.appendChild(ul)
+      Generator.getCompats(reading.user.id);
   }
 
   static  revealTeamStandings(){
@@ -215,21 +217,18 @@ class Generator{
   // }
   }
 
-  static getCompats(e) {
-    let currentUser = e.target.dataset.id
-    let compatSign = document.getElementById('currentCompat')
-    console.log("currentUser")
-    console.log(currentUser)
-    console.log("compatSign")
-    console.log(compatSign.getAttribute("data-id"))
+  static getCompats(id) {
+    let currentUser = id
+    let compatSignDiv = document.getElementById('currentCompat')
+    let compatSign = compatSignDiv.getAttribute("data-id").slice(1)
+    let compatHTML = ""
     Adapter.getUsers().then(users => {
       users.forEach(user => {
-        console.log(user)
-        console.log(user.id)
-        if (!(currentUser == user.id)) {
-          console.log("This is not you!")
+        if ((!(currentUser == user.id)) && (compatSign == user.sign)) {
+          compatSignDiv.innerHTML += `<br>${user.username} is a match!`
         }
       })
+      // return compatHTML;
     })
   }
 }
