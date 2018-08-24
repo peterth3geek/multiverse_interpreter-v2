@@ -232,7 +232,9 @@ class Adapter {
     Adapter.getUsers().then(users => { users.forEach(user => {
       if (inputString === user.username) {
         navSignSelect.options[zodiacSigns.indexOf(user.sign)].selected=true
+        if (welcomeSignSelect != null) {
         welcomeSignSelect.options[zodiacSigns.indexOf(user.sign)].selected=true
+      }
       }
     } ) })}
 

@@ -249,7 +249,9 @@ class Generator{
         display.appendChild(otherDiv)
       })
     })
-    return Adapter.handleReadings()
+    if (document.getElementById('navUserInput').value != "") {
+      return Adapter.handleReadings()
+    }
   }
 
   static hideReading(readingID){
