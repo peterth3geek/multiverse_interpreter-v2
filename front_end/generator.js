@@ -140,6 +140,7 @@ class Generator{
 
 
   static renderReading(reading){
+    Adapter.viewRawReading(reading.id).then(raw =>{
       const body = document.getElementById('reading-display')
         body.className = `center card card-header-${reading.team.id} micro-margin scroll-div-main`
         body.innerText = ''
@@ -162,6 +163,8 @@ class Generator{
         warning.className = 'warning-p'
       const rundown = document.createElement('p')
         rundown.className = 'rundown-p'
+      const mood = document.createElement('p')
+        mood.className = 'cosmic-A'
       const compatibility = document.createElement('p')
         compatibility.className = 'comp-p'
         compatibility.id = 'currentCompat'
@@ -178,6 +181,7 @@ class Generator{
       cosmicAddress.innerHTML = `<b>Cosmic Address:</b><br>${reading.universe_id}`
       warning.innerHTML = `<b>Your Fortune:</b> ${reading.time_warning}`
       rundown.innerHTML = `<b>Your Horoscope:</b> ${reading.description}`
+      mood.innerHTML = `<b>Mood:</b> ${raw.mood}`
       compatibility.innerHTML = `<b>Compatibility: </b>${reading.compatibility}`
       compatibility.addEventListener('DOMContentLoaded', Generator.getCompats)
       image.src = reading.gif_url
@@ -193,9 +197,12 @@ class Generator{
           return Generator.revealTeamStandings()
         })
 
-      ul.append(nameAndSign, image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
+      ul.append(nameAndSign, image, mood, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
       body.appendChild(ul)
       Generator.getCompats(reading.user.id);
+
+    })
+
   }
 
   static  revealTeamStandings(){

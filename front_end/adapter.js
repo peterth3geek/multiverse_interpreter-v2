@@ -224,6 +224,11 @@ class Adapter {
     return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 
+  static viewRawReading(readingID){
+    const readingURL = `http://localhost:3000/readings`
+    return fetch(`${readingURL}/${readingID}`).then(r => r.json())
+  }
+
   static signAutoFind(){
     Adapter.getUsers().then(users => {
       users.forEach(user => {
