@@ -220,21 +220,17 @@ class Adapter {
     return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 
-  static signAutoFind(){
-    Adapter.getUsers().then(users => {
-      users.forEach(user => {
-        arr.find(k => k=='b');
-      })
-      // return compatHTML;
-    })
-
-    // Adapter.getUsers().then(users => {
-    //   users.forEach(user => {
-    //     if ((!(currentUser == user.id)) && (compatSign == user.sign)) {
-    //       compatSignDiv.innerHTML += `<br>${user.username} is a match!`
-    //     }
-    //   })
-    // })
+  static signAutoFind(e){
+    let inputString = e.target.value
+    const zodiacSigns = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']
+    let welcomeSignSelect = document.getElementById('welcomeSignSelect')
+    let navSignSelect = document.getElementById('navSignSelect')
+    Adapter.getUsers().then(users => { users.forEach(user => {
+      if (inputString === user.username) {
+        navSignSelect.options[zodiacSigns.indexOf(user.sign)].selected=true
+        welcomeSignSelect.options[zodiacSigns.indexOf(user.sign)].selected=true
+      }
+    } ) })
   }
 
   // END FETCH REQUEST BLOCK

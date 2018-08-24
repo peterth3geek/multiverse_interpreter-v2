@@ -315,6 +315,7 @@ class Generator{
     const signSelect = document.createElement('select')
       const zodiacSigns = {Aries: '(March 21-April 19)', Taurus: '(April 20-May 20)', Gemini: '(May 21-June 20)', Cancer: '(June 21-July 22)', Leo: '(July 23-August 22)', Virgo: '(August 23-September 22)', Libra: '(September 23-October 22)', Scorpio: '(October 23-November 21)', Sagittarius: '(November 22-December 21)', Capricorn: '(December 22-January 19)', Aquarius: '(January 20 to February 18)', Pisces: '(February 19 to March 20)'}
       signSelect.name = 'sign'
+      signSelect.id = 'welcomeSignSelect'
       signSelect.className = 'custom-select form-control-lg'
       Object.entries(zodiacSigns).map((key) => {
         return signSelect.appendChild(new Option(`${key[0]} - ${key[1]}`, key[0]))
@@ -359,8 +360,10 @@ class Generator{
     const usernameInput = document.createElement('input')
       usernameInput.type = 'TEXT'
       usernameInput.name = 'username'
+      usernameInput.id = 'navUserInput'
       usernameInput.placeholder = 'Your Username'
       usernameInput.className = 'form-control mb-2 mr-sm-2 mb-sm-0'
+      usernameInput.addEventListener('blur', Adapter.signAutoFind)
     const submitBtn = document.createElement('button')
       submitBtn.innerText = 'Get Multiverse Reading'
       submitBtn.addEventListener('click', Adapter.handleSubmit)
@@ -368,6 +371,8 @@ class Generator{
     const signSelect = document.createElement('select')
       const zodiacSigns = {Aries: '(March 21-April 19)', Taurus: '(April 20-May 20)', Gemini: '(May 21-June 20)', Cancer: '(June 21-July 22)', Leo: '(July 23-August 22)', Virgo: '(August 23-September 22)', Libra: '(September 23-October 22)', Scorpio: '(October 23-November 21)', Sagittarius: '(November 22-December 21)', Capricorn: '(December 22-January 19)', Aquarius: '(January 20 to February 18)', Pisces: '(February 19 to March 20)'}
       signSelect.name = 'sign'
+      signSelect.id = 'navSignSelect'
+
       signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
       Object.entries(zodiacSigns).map((key) => {
         return signSelect.appendChild(new Option(`${key[0]} - ${key[1]}`, key[0]))
@@ -386,6 +391,7 @@ class Generator{
 
     Generator.renderOptionButtons()
     navBar.appendChild(form)
+
   }
 
   static renderOptionButtons(){
