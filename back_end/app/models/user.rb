@@ -4,6 +4,6 @@ class User < ApplicationRecord
 
   validates :username, presence: true
   validates :username, length: {in: 6..15}
-  validates :uniqueness, {case_sensitive: false}
+  validates :username, uniqueness: {case_sensitive: false}
 
 end

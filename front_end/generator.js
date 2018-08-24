@@ -100,17 +100,17 @@ class Generator{
         bodyDiv.className = `card-header card-header-1`
 
       } else{
-        team.innerText = reading.team.name
+        team.innerHTML = `Team: <b>${reading.team.name}</b>`
         teamMotto.innerText = reading.team.motto
         headerDiv.className = `card-header card-header-${reading.team.id}`
         bodyDiv.className = `card-header card-header-${reading.team.id}`
 
       }
-      nameAndSign.innerHTML = `<b>${reading.user.username}</b>, ${reading.user.sign}`
-      cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
+      nameAndSign.innerHTML = `User: <b>${reading.user.username}</b>, <i>${reading.user.sign}</i>`
+      cosmicAddress.innerHTML = `Cosmic Location: <b>${reading.universe_id.split("<br>")[0]}</b>`
       let createdAtDate = new Date(reading.created_at)
-      createdAt.innerHTML = `
-      ${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}
+      createdAt.innerHTML = `Created at:
+      <b>${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}</b>
       `
       warning.innerText = reading.time_warning
       rundown.innerText = reading.description
@@ -170,7 +170,7 @@ class Generator{
         image.className = "large-gif"
 
       //Add data
-      nameAndSign.innerHTML = `<b>${reading.user.username}</b>, ${reading.user.sign}`
+      nameAndSign.innerHTML = `User: <b>${reading.user.username}</b>, ${reading.user.sign}`
       team.innerHTML = `<b>Team name: </b>${reading.team.name}<br>
       "${reading.team.motto}"
       `
