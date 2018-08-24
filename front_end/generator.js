@@ -208,6 +208,7 @@ class Generator{
       titleCard.className = 'center card-header-1 card octothorpe card-title mx-auto'
     const cardHeader = document.createElement('h1')
       cardHeader.innerText = 'Galactic Octothorpe Standings'
+      const e = ''
 
     Adapter.getTeams().then(teams => {
       teams.sort((a, b) => b.converteds.length - a.converteds.length).forEach(team => {
@@ -239,9 +240,9 @@ class Generator{
         teamCard.append(headerDiv, bodyDiv)
         otherDiv.appendChild(teamCard)
         display.appendChild(otherDiv)
-
       })
     })
+    return Adapter.handleReadings()
   }
 
   static hideReading(readingID){

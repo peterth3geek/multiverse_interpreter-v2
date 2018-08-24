@@ -151,14 +151,18 @@ class Adapter {
   }
 
   static handleReadings(e){
-    e.preventDefault()
+    if(e){
+      e.preventDefault()
+    }
+    // e.preventDefault()
     const theAlert = document.getElementById('validation-alert')
     theAlert.hidden = true
-    const formData = e.target.parentElement.parentElement
+    const theform = document.getElementById('navbar-form')
+    // const formData = e.target.parentElement.parentElement
 
     const formOBJ = {
-      username: formData.username.value,
-      sign: formData.sign.value
+      username: theform.username.value,
+      sign: theform.sign.value
     }
 
     Adapter.saveUser(formOBJ)
