@@ -151,6 +151,24 @@ class Adapter {
       })
   }
 
+  static handleReadingsWelcome(e){
+    e.preventDefault()
+    const theAlert = document.getElementById('validation-alert')
+    theAlert.hidden = true
+    const formData = e.target.parentElement
+
+    const formOBJ = {
+      username: formData.username.value,
+      sign: formData.sign.value
+    }
+
+    Adapter.saveUser(formOBJ)
+      .then(user => {
+        // currentUserId = user.id
+        return Generator.renderConvertedReadingList(user.id)
+      })
+  }
+
   static getTeams(){
     const teamURL = `http://localhost:3000/teams`
 

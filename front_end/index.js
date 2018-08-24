@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', welcome)
       zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
     const readingsBtn = document.createElement('button')
       readingsBtn.innerText = 'All My Readings'
-      readingsBtn.addEventListener('click', Adapter.handleReadings)
+      readingsBtn.addEventListener('click', Adapter.handleReadingsWelcome)
       readingsBtn.className = 'btn btn-primary mr-sm-2'
 
     form.append(usernameInput, signSelect, submitBtn, readingsBtn)
