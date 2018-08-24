@@ -12,11 +12,12 @@ img {
 .logo-text{
   color: #3a98a2;
   font-family: "Lucida Console", Monaco, monospace;
-  font-size: 3vh;
+  font-size: 2vw;
+  /* text-align: center; */
 }
 .welcome-text{
   font-family: "Lucida Console", Monaco, monospace;
-  font-size: 3vh;
+  font-size: 3vw;
   color: #d1d1d1;
   background-color: #803aa3;
 }
@@ -37,6 +38,7 @@ img {
 
 .welcome-card{
   width: 62vw;
+  height: 40vh;
 }
 
 .fit-gif{
@@ -58,8 +60,8 @@ img {
 .scroll-div {
   overflow: scroll;
   overflow-y: scroll;
-  max-height: 80vh;
-  height: 80vw;
+  max-height: 76vh;
+  height: 76vw;
 }
 .scroll-div-main{
   overflow: scroll;

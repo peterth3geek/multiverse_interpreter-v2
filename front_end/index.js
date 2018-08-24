@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', welcome)
     const displayArea = document.getElementById('reading-display')
     displayArea.className = 'center row h-100 justify-content-center align-items-center'
     const welcomeCard = document.createElement('div')
-      welcomeCard.className = 'card card-header-1 form-group welcome-card marginal micro-padding'
+      welcomeCard.className = 'card card-header-1 form-group welcome-card marginal micro-padding center justify-content-center align-items-center'
     const welcomeHeader = document.createElement('div')
     const welcomeBody = document.createElement('div')
 
@@ -28,10 +28,12 @@ document.addEventListener('DOMContentLoaded', welcome)
       submitBtn.addEventListener('click', Adapter.handleSubmitWelcome)
       submitBtn.className = 'btn btn-primary mr-sm-2 micro-margin'
     const signSelect = document.createElement('select')
-      const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+      const zodiacSigns = {Aries: '(March 21-April 19)', Taurus: '(April 20-May 20)', Gemini: '(May 21-June 20)', Cancer: '(June 21-July 22)', Leo: '(July 23-August 22)', Virgo: '(August 23-September 22)', Libra: '(September 23-October 22)', Scorpio: '(October 23-November 21)', Sagittarius: '(November 22-December 21)', Capricorn: '(December 22-January 19)', Aquarius: '(January 20 to February 18)', Pisces: '(February 19 to March 20)'}
       signSelect.name = 'sign'
-      signSelect.className = 'custom-select form-control-lg mb-2 mr-sm-2 mb-sm-0'
-      zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
+      signSelect.className = 'custom-select form-control-lg'
+      Object.entries(zodiacSigns).map((key) => {
+        return signSelect.appendChild(new Option(`${key[0]} - ${key[1]}`, key[0]))
+      });
     const readingsBtn = document.createElement('button')
       readingsBtn.innerText = 'All My Readings'
       readingsBtn.addEventListener('click', Adapter.handleReadingsWelcome)
@@ -79,10 +81,12 @@ document.addEventListener('DOMContentLoaded', welcome)
       submitBtn.addEventListener('click', Adapter.handleSubmit)
       submitBtn.className = 'btn btn-primary mr-sm-2 micro-margin'
     const signSelect = document.createElement('select')
-      const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"]
+      const zodiacSigns = {Aries: '(March 21-April 19)', Taurus: '(April 20-May 20)', Gemini: '(May 21-June 20)', Cancer: '(June 21-July 22)', Leo: '(July 23-August 22)', Virgo: '(August 23-September 22)', Libra: '(September 23-October 22)', Scorpio: '(October 23-November 21)', Sagittarius: '(November 22-December 21)', Capricorn: '(December 22-January 19)', Aquarius: '(January 20 to February 18)', Pisces: '(February 19 to March 20)'}
       signSelect.name = 'sign'
       signSelect.className = 'custom-select mb-2 mr-sm-2 mb-sm-0'
-      zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
+      Object.entries(zodiacSigns).map((key) => {
+        return signSelect.appendChild(new Option(`${key[0]} - ${key[1]}`, key[0]))
+      });
     const readingsBtn = document.createElement('button')
       readingsBtn.innerText = 'All My Readings'
       readingsBtn.addEventListener('click', Adapter.handleReadings)
