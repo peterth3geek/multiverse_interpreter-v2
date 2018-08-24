@@ -50,7 +50,7 @@ img {
 
 .large-gif{
   width: 100vw;
-  height: 50vh;
+  /* height: 75vh; */
   object-fit: cover;
   align-content: center;
   padding-top: 1vh;

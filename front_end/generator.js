@@ -100,17 +100,17 @@ class Generator{
         bodyDiv.className = `card-header card-header-1`
 
       } else{
-        team.innerText = reading.team.name
+        team.innerHTML = `Team: <b>${reading.team.name}</b>`
         teamMotto.innerText = reading.team.motto
         headerDiv.className = `card-header card-header-${reading.team.id}`
         bodyDiv.className = `card-header card-header-${reading.team.id}`
 
       }
-      nameAndSign.innerHTML = `<b>${reading.user.username}</b>, ${reading.user.sign}`
-      cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
+      nameAndSign.innerHTML = `User: <b>${reading.user.username}</b>, <i>${reading.user.sign}</i>`
+      cosmicAddress.innerHTML = `Cosmic Location: <b>${reading.universe_id.split("<br>")[0]}</b>`
       let createdAtDate = new Date(reading.created_at)
-      createdAt.innerHTML = `
-      ${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}
+      createdAt.innerHTML = `Created at:
+      <b>${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}</b>
       `
       warning.innerText = reading.time_warning
       rundown.innerText = reading.description
@@ -140,6 +140,7 @@ class Generator{
 
 
   static renderReading(reading){
+    Adapter.viewRawReading(reading.id).then(raw =>{
       const body = document.getElementById('reading-display')
         body.className = `center card card-header-${reading.team.id} micro-margin scroll-div-main`
         body.innerText = ''
@@ -162,6 +163,8 @@ class Generator{
         warning.className = 'warning-p'
       const rundown = document.createElement('p')
         rundown.className = 'rundown-p'
+      const mood = document.createElement('p')
+        mood.className = 'cosmic-A'
       const compatibility = document.createElement('p')
         compatibility.className = 'comp-p'
         compatibility.id = 'currentCompat'
@@ -170,7 +173,7 @@ class Generator{
         image.className = "large-gif"
 
       //Add data
-      nameAndSign.innerHTML = `<b>${reading.user.username}</b>, ${reading.user.sign}`
+      nameAndSign.innerHTML = `User: <b>${reading.user.username}</b>, ${reading.user.sign}`
       team.innerHTML = `<b>Team name: </b>${reading.team.name}<br>
       "${reading.team.motto}"
       `
@@ -178,6 +181,7 @@ class Generator{
       cosmicAddress.innerHTML = `<b>Cosmic Address:</b><br>${reading.universe_id}`
       warning.innerHTML = `<b>Your Fortune:</b> ${reading.time_warning}`
       rundown.innerHTML = `<b>Your Horoscope:</b> ${reading.description}`
+      mood.innerHTML = `<b>Mood:</b> ${raw.mood}`
       compatibility.innerHTML = `<b>Compatibility: </b>${reading.compatibility}`
       compatibility.addEventListener('DOMContentLoaded', Generator.getCompats)
       image.src = reading.gif_url
@@ -193,9 +197,12 @@ class Generator{
           return Generator.revealTeamStandings()
         })
 
-      ul.append(nameAndSign, image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
+      ul.append(nameAndSign, image, mood, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
       body.appendChild(ul)
       Generator.getCompats(reading.user.id);
+
+    })
+
   }
 
   static  revealTeamStandings(){
@@ -208,6 +215,7 @@ class Generator{
       titleCard.className = 'center card-header-1 card octothorpe card-title mx-auto'
     const cardHeader = document.createElement('h1')
       cardHeader.innerText = 'Galactic Octothorpe Standings'
+      const e = ''
 
     Adapter.getTeams().then(teams => {
       teams.sort((a, b) => b.converteds.length - a.converteds.length).forEach(team => {
@@ -239,9 +247,9 @@ class Generator{
         teamCard.append(headerDiv, bodyDiv)
         otherDiv.appendChild(teamCard)
         display.appendChild(otherDiv)
-
       })
     })
+    return Adapter.handleReadings()
   }
 
   static hideReading(readingID){
