@@ -40,7 +40,24 @@ class Adapter {
   }
 
   static getGiphy(search){
-    const gifSearch = `https://api.giphy.com/v1/gifs/search?q=${search}&api_key=RmAgqsS7izavtgXBLHLvsDmL0MAjBTF4`
+    let randNum = Math.floor(Math.random()*4)
+
+    let type = ''
+
+    switch(randNum){
+      case 0:
+        type = 'funny'
+      break;
+      case 1:
+        type = 'cute'
+      break;
+      case 2:
+        type = 'epic'
+      break;
+      case 3:
+      break;
+    }
+    const gifSearch = `https://api.giphy.com/v1/gifs/search?q=${search}-${type}&api_key=RmAgqsS7izavtgXBLHLvsDmL0MAjBTF4`
     return fetch(gifSearch).then(r => r.json())
   }
 

@@ -4,6 +4,21 @@ class Generator{
     const fullList = document.getElementById('sidebar-data')
     // fullList.classList.add('scroll-div')
     fullList.innerText = ''
+
+    const sideBarCard = document.createElement('div')
+      sideBarCard.className = 'card card-header-1 center marginal micro-padding'
+    const sideBarCardHead = document.createElement('div')
+      sideBarCardHead.classList.add('card-header')
+    const sideBarLabel = document.createElement('h3')
+      sideBarLabel.innerHTML = 'Previous<br>Interpretations'
+      sideBarLabel.className = 'sidebar-text'
+      sideBarCardHead.appendChild(sideBarLabel)
+      sideBarCard.appendChild(sideBarCardHead)
+      fullList.appendChild(sideBarCard)
+
+    const scrollingDiv = document.createElement('div')
+      scrollingDiv.className = 'scroll-div'
+      fullList.appendChild(scrollingDiv)
     Adapter.getAllConvertedReadings().then(list =>{
       list.forEach(reading => {
           // Create Card Elements
@@ -84,7 +99,7 @@ class Generator{
           // Append to Card
           cardDiv.append(headerDiv, bodyDiv)
           // Append to Column
-          fullList.appendChild(cardDiv)
+          scrollingDiv.appendChild(cardDiv)
 
       })
     })
@@ -92,8 +107,22 @@ class Generator{
 
   static renderConvertedReadingList(userID){
     const fullList = document.getElementById('sidebar-data')
-    // fullList.classList.add('scroll-div')
-    fullList.innerText = ''
+      fullList.innerText = ''
+    const sideBarCard = document.createElement('div')
+      sideBarCard.className = 'card card-header-1 center marginal micro-padding'
+    const sideBarCardHead = document.createElement('div')
+      sideBarCardHead.classList.add('card-header')
+    const sideBarLabel = document.createElement('h3')
+      sideBarLabel.innerHTML = 'Previous<br>Interpretations'
+      sideBarLabel.className = 'sidebar-text'
+      sideBarCardHead.appendChild(sideBarLabel)
+      sideBarCard.appendChild(sideBarCardHead)
+      fullList.appendChild(sideBarCard)
+
+    const scrollingDiv = document.createElement('div')
+      scrollingDiv.className = 'scroll-div'
+      fullList.appendChild(scrollingDiv)
+
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
         if (reading.user.id === userID){
@@ -175,7 +204,7 @@ class Generator{
           // Append to Card
           cardDiv.append(headerDiv, bodyDiv)
           // Append to Column
-          fullList.appendChild(cardDiv)
+          scrollingDiv.appendChild(cardDiv)
         }
       })
     })
@@ -183,7 +212,7 @@ class Generator{
 
   static renderReading(reading){
       const body = document.getElementById('reading-display')
-        body.className = `center card card-header-${reading.team.id} micro-margin scroll-div`
+        body.className = `center card card-header-${reading.team.id} micro-margin scroll-div-main`
         body.innerText = ''
 
       const bigDiv = document.createElement('div')

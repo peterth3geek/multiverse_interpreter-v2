@@ -20,6 +20,10 @@ img {
   color: #d1d1d1;
   background-color: #803aa3;
 }
+.sidebar-text{
+  font-family: "Lucida Console", Monaco, monospace;
+  color: #d1d1d1;
+}
 
 .reduce-size{
   height: 75vh;
@@ -52,6 +56,12 @@ img {
 }
 
 .scroll-div {
+  overflow: scroll;
+  overflow-y: scroll;
+  max-height: 80vh;
+  height: 80vw;
+}
+.scroll-div-main{
   overflow: scroll;
   overflow-y: scroll;
   max-height: 95vh;
