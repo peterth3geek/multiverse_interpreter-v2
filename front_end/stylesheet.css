@@ -41,7 +41,7 @@ img {
 
 .fit-gif{
   width: 30vw;
-  height: 20vh;
+  height: 30vh;
   object-fit: cover;
   align-content: center;
 }
