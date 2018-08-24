@@ -224,19 +224,22 @@ class Adapter {
     return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 
-  static signAutoFind(e){
+  static signAutoFind(e) {
     let inputString = e.target.value
     const zodiacSigns = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces']
     let welcomeSignSelect = document.getElementById('welcomeSignSelect')
     let navSignSelect = document.getElementById('navSignSelect')
-    Adapter.getUsers().then(users => { users.forEach(user => {
-      if (inputString === user.username) {
-        navSignSelect.options[zodiacSigns.indexOf(user.sign)].selected=true
-        if (welcomeSignSelect != null) {
-        welcomeSignSelect.options[zodiacSigns.indexOf(user.sign)].selected=true
-      }
-      }
-    } ) })}
+    Adapter.getUsers().then(users => {
+      users.forEach(user => {
+        if (inputString === user.username) {
+          navSignSelect.options[zodiacSigns.indexOf(user.sign)].selected = true
+          if (welcomeSignSelect != null) {
+            welcomeSignSelect.options[zodiacSigns.indexOf(user.sign)].selected = true
+          }
+        }
+      })
+    })
+  }
 
   static viewRawReading(readingID){
     const readingURL = `http://localhost:3000/readings`

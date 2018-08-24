@@ -1,16 +1,16 @@
 class Converter {
   // THIS IS DATA CONVERSION
 
-  static convertReading(originalReading){
+  static convertReading(originalReading) {
     const e = originalReading
     //Time Warning Code
-    let warningsArray = ["Do not be home at <time>. ", "At <time>, a metaphor could save your life. ", "At <time>, you should ask that special someone out for coffee and cherry pie. Or don't! But the stars would prefer if you did. ", "At <time>, it will be too late for good things to happen, so get on with it!", "At <time>, you will embark on a fruitful business venture!", "You are a person with a good sense of justice, and <time> will be the time to act like it. ", "At <time>, take a moment to do something just for yourself for a goddamn change. ", "At <time>, you should stop hiding your light under a basket. ", "A golden egg of opportunity falls into your lap at <time>, so don't let it break like last time. ", "Your pain is the breaking of the shell that encloses your understanding. Also, the store closes at <time>, so don't forget to buy that mug brownie for one. ", "At <time>, there will be no changes of note in your life.", `Betrayal, treason, and vile calumny will be the order of things at <time>, which you must admit, sounds a lot cooler than the light office work you’re used to.`, "At <time>, remember that just because someone puts a diving board somewhere doesn’t mean you have to jump off it. ", `Things are gonna suck at <time>.`, 'You should probably get a snack at <time>.', `We know a wizard is never early or late, but be where you're supposed to be at <time>.`, `Don't fall asleep before <time> tomorrow. Trust us.`, `Start singing the 'Africa' by Toto at <time>. You'll be happy you did.`, `You're going to meet your soulmate at <time>. We don't know which day, just that it will be at <time>.`, `Turn on your Octothrope Transmitter at <time>.`, `You might hate <time> today. You might love it. IDK, time is a construt anyway.`, `Fortune favors the bold, at precicely <time>.  Otherwise fortune favors the patient.`, `Trim your hedges at <time>.`, `Remember to reticulate the interdimentional converters at <time>.` ];
+    let warningsArray = ["Do not be home at <time>. ", "At <time>, a metaphor could save your life. ", "At <time>, you should ask that special someone out for coffee and cherry pie. Or don't! But the stars would prefer if you did. ", "At <time>, it will be too late for good things to happen, so get on with it!", "At <time>, you will embark on a fruitful business venture!", "You are a person with a good sense of justice, and <time> will be the time to act like it. ", "At <time>, take a moment to do something just for yourself for a goddamn change. ", "At <time>, you should stop hiding your light under a basket. ", "A golden egg of opportunity falls into your lap at <time>, so don't let it break like last time. ", "Your pain is the breaking of the shell that encloses your understanding. Also, the store closes at <time>, so don't forget to buy that mug brownie for one. ", "At <time>, there will be no changes of note in your life.", `Betrayal, treason, and vile calumny will be the order of things at <time>, which you must admit, sounds a lot cooler than the light office work you’re used to.`, "At <time>, remember that just because someone puts a diving board somewhere doesn’t mean you have to jump off it. ", `Things are gonna suck at <time>.`, 'You should probably get a snack at <time>.', `We know a wizard is never early or late, but be where you're supposed to be at <time>.`, `Don't fall asleep before <time> tomorrow. Trust us.`, `Start singing the 'Africa' by Toto at <time>. You'll be happy you did.`, `You're going to meet your soulmate at <time>. We don't know which day, just that it will be at <time>.`, `Turn on your Octothrope Transmitter at <time>.`, `You might hate <time> today. You might love it. IDK, time is a construt anyway.`, `Fortune favors the bold, at precicely <time>.  Otherwise fortune favors the patient.`, `Trim your hedges at <time>.`, `Remember to reticulate the interdimentional converters at <time>.`];
     let warning = warningsArray[Math.floor(Math.random() * warningsArray.length)];
     warning = warning.replace("<time>", e.lucky_time);
     //end of Time Warning Code
-    let randNum = Math.floor(Math.random()*20)
+    let randNum = Math.floor(Math.random() * 20)
     Adapter.getGiphy(e.mood).then(pic => {
-       return pic.data[randNum].images.original.url
+      return pic.data[randNum].images.original.url
     }).then(image => {
       const teamNumber = Converter.assignTeam(e.color)
       const readingObject = {
@@ -27,35 +27,35 @@ class Converter {
   }
 
 
-  static assignTeam(colorString){
+  static assignTeam(colorString) {
     const newString = colorString.toLowerCase()
     let teamAssignment = 1
-      switch (true) {
-        case newString.includes('red'):
+    switch (true) {
+      case newString.includes('red'):
         teamAssignment = 2
         break;
-        case newString.includes('yellow'):
+      case newString.includes('yellow'):
         teamAssignment = 3
         break;
-        case newString.includes('blue'):
-         teamAssignment = 4
+      case newString.includes('blue'):
+        teamAssignment = 4
         break;
-        case newString.includes('green'):
-         teamAssignment = 5
+      case newString.includes('green'):
+        teamAssignment = 5
         break;
-        case newString.includes('orange'):
-         teamAssignment = 6
+      case newString.includes('orange'):
+        teamAssignment = 6
         break;
-        case newString.includes('purple'):
-         teamAssignment = 7
+      case newString.includes('purple'):
+        teamAssignment = 7
         break;
-        case newString.includes('black'):
-         teamAssignment = 8
+      case newString.includes('black'):
+        teamAssignment = 8
         break;
-        case newString.includes('white'):
+      case newString.includes('white'):
         teamAssignment = 9
         break;
-      }
-      return teamAssignment
+    }
+    return teamAssignment
   }
 }
