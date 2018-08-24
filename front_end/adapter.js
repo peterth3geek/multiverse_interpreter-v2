@@ -201,6 +201,7 @@ class Adapter {
     let displayId = document.getElementById('delReading')
     if ((displayId != null) && (displayId.getAttribute("data-id"))===(readingID)) {
     document.getElementById('reading-display').innerText = ''
+    Generator.revealTeamStandings()
   }
     return fetch(`${convertedURL}/${readingID}`, {
       method: 'DELETE'
