@@ -260,14 +260,7 @@ class Generator{
           return Generator.revealTeamStandings()
         })
 
-      const compatBtn = document.createElement('button')
-      compatBtn.dataset.id = reading.user.id
-      compatBtn.id = 'compatBtn'
-      compatBtn.innerText = 'Compatibility'
-      compatBtn.className = 'btn btn-info'
-      compatBtn.addEventListener('click', Generator.getCompats)
-
-      ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn, compatBtn)
+      ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
       body.appendChild(ul)
       Generator.getCompats(reading.user.id);
   }
