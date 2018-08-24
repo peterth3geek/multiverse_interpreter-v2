@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', welcome)
       usernameInput.size = 50
       usernameInput.name = 'username'
       usernameInput.placeholder = 'Create or Submit Your Username'
-      usernameInput.className = 'form-control-lg'
+      usernameInput.className = 'form-control-lg micro-margin'
     const submitBtn = document.createElement('button')
       submitBtn.innerText = 'Get Multiverse Reading'
       submitBtn.addEventListener('click', Adapter.handleSubmitWelcome)
