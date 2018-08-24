@@ -220,5 +220,22 @@ class Adapter {
     return fetch(`${convertedURL}/${readingID}`).then(r => r.json()).then(Generator.renderReading)
   }
 
+  static signAutoFind(){
+    Adapter.getUsers().then(users => {
+      users.forEach(user => {
+        arr.find(k => k=='b');
+      })
+      // return compatHTML;
+    })
+
+    // Adapter.getUsers().then(users => {
+    //   users.forEach(user => {
+    //     if ((!(currentUser == user.id)) && (compatSign == user.sign)) {
+    //       compatSignDiv.innerHTML += `<br>${user.username} is a match!`
+    //     }
+    //   })
+    // })
+  }
+
   // END FETCH REQUEST BLOCK
 }

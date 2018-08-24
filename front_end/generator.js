@@ -18,89 +18,13 @@ class Generator{
 
     const scrollingDiv = document.createElement('div')
       scrollingDiv.className = 'scroll-div'
+      scrollingDiv.style = 'font-size: 0.8rem;'
+      scrollingDiv.id = 'scrollingSideBar'
+
+
       fullList.appendChild(scrollingDiv)
     Adapter.getAllConvertedReadings().then(list =>{
-      list.forEach(reading => {
-          // Create Card Elements
-          const cardDiv = document.createElement('div')
-            cardDiv.dataset.id = reading.id
-            cardDiv.id = `user-reading-${reading.id}`
-            cardDiv.className = `card marginal`
-          const headerDiv = document.createElement('div')
-            headerDiv.id = `image-${reading.id}`
-            headerDiv.dataset.id = reading.id
-
-          const bodyDiv = document.createElement('div')
-            bodyDiv.dataset.id = reading.id
-            bodyDiv.id = `body-${reading.id}`
-            bodyDiv.classList.add('card-body')
-          // Card Header Data
-          const image = document.createElement('img')
-            image.src = reading.gif_url
-            image.className = 'fit-gif'
-          const createdAt = document.createElement('p')
-            createdAt.className = 'createdAt-p'
-          const team = document.createElement('p')
-            team.className = 'team-p'
-          const teamMotto = document.createElement('p')
-            teamMotto.className = 'team-p'
-          const cosmicAddress = document.createElement('p')
-            cosmicAddress.className = 'cosmic-A'
-          const warning = document.createElement('p')
-            warning.className = 'warning-p'
-          const rundown = document.createElement('p')
-            rundown.className = 'rundown-p'
-          const compatibility = document.createElement('p')
-            compatibility.className = 'comp-p'
-          // Card Body Data
-          const ul = document.createElement('ul')
-          ul.style = 'font-size: 0.8rem;'
-          // Card List Data
-
-            if (reading.team === null){
-              team.innerText = "No team Assigned"
-              teamMotto.innerText = ''
-              headerDiv.className = `card-header card-header-1`
-              bodyDiv.className = `card-header card-header-1`
-
-            } else{
-              team.innerText = reading.team.name
-              teamMotto.innerText = reading.team.motto
-              headerDiv.className = `card-header card-header-${reading.team.id}`
-              bodyDiv.className = `card-header card-header-${reading.team.id}`
-
-            }
-            cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
-            let createdAtDate = new Date(reading.created_at)
-            createdAt.innerHTML = `
-            ${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}
-            `
-            warning.innerText = reading.time_warning
-            rundown.innerText = reading.description
-            compatibility.innerText = reading.compatibility
-
-          const viewBtn = document.createElement('button')
-            viewBtn.dataset.id = reading.id
-            viewBtn.innerText = "View"
-            viewBtn.className = 'btn btn-info'
-            viewBtn.addEventListener('click', Adapter.viewReading)
-          const deleteBtn = document.createElement('button')
-            deleteBtn.dataset.id = reading.id
-            deleteBtn.innerText = 'Delete'
-            deleteBtn.className = 'btn btn-danger'
-            deleteBtn.addEventListener('click', Adapter.deleteReading)
-
-          // Append Data to Sub-Body
-          // ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
-          ul.append(createdAt, team, cosmicAddress, viewBtn, deleteBtn)
-          // Append Card Data
-          headerDiv.appendChild(image)
-          bodyDiv.appendChild(ul)
-          // Append to Card
-          cardDiv.append(headerDiv, bodyDiv)
-          // Append to Column
-          scrollingDiv.appendChild(cardDiv)
-
+      list.forEach(reading => { Generator.renderSideReading(reading)
       })
     })
   }
@@ -121,123 +45,132 @@ class Generator{
 
     const scrollingDiv = document.createElement('div')
       scrollingDiv.className = 'scroll-div'
+      scrollingDiv.style = 'font-size: 0.8rem;'
+      scrollingDiv.id = 'scrollingSideBar'
+
       fullList.appendChild(scrollingDiv)
 
     Adapter.getAllConvertedReadings().then(list =>{
       list.sort((a,b) => b.id - a.id).forEach(reading => {
         if (reading.user.id === userID){
-          // Create Card Elements
-          const cardDiv = document.createElement('div')
-            cardDiv.dataset.id = reading.id
-            cardDiv.id = `user-reading-${reading.id}`
-            cardDiv.className = `card marginal`
-          const headerDiv = document.createElement('div')
-            headerDiv.id = `image-${reading.id}`
-            headerDiv.dataset.id = reading.id
-
-          const bodyDiv = document.createElement('div')
-            bodyDiv.dataset.id = reading.id
-            bodyDiv.id = `body-${reading.id}`
-            bodyDiv.classList.add('card-body')
-          // Card Header Data
-          const image = document.createElement('img')
-            image.src = reading.gif_url
-            image.className = 'fit-gif'
-          const createdAt = document.createElement('p')
-            createdAt.className = 'createdAt-p'
-          const team = document.createElement('p')
-            team.className = 'team-p'
-          const teamMotto = document.createElement('p')
-            teamMotto.className = 'team-p'
-          const cosmicAddress = document.createElement('p')
-            cosmicAddress.className = 'cosmic-A'
-          const warning = document.createElement('p')
-            warning.className = 'warning-p'
-          const rundown = document.createElement('p')
-            rundown.className = 'rundown-p'
-          const compatibility = document.createElement('p')
-            compatibility.className = 'comp-p'
-          // Card Body Data
-          const ul = document.createElement('ul')
-          ul.style = 'font-size: 0.8rem;'
-          // Card List Data
-
-            if (reading.team === null){
-              team.innerText = "No team Assigned"
-              teamMotto.innerText = ''
-              headerDiv.className = `card-header card-header-1`
-              bodyDiv.className = `card-header card-header-1`
-
-            } else{
-              team.innerText = reading.team.name
-              teamMotto.innerText = reading.team.motto
-              headerDiv.className = `card-header card-header-${reading.team.id}`
-              bodyDiv.className = `card-header card-header-${reading.team.id}`
-
-            }
-            cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
-            let createdAtDate = new Date(reading.created_at)
-            createdAt.innerHTML = `
-            ${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}
-            `
-            warning.innerText = reading.time_warning
-            rundown.innerText = reading.description
-            compatibility.innerText = reading.compatibility
-
-          const viewBtn = document.createElement('button')
-            viewBtn.dataset.id = reading.id
-            viewBtn.innerText = "View"
-            viewBtn.className = 'btn btn-info'
-            viewBtn.addEventListener('click', Adapter.viewReading)
-          const deleteBtn = document.createElement('button')
-            deleteBtn.dataset.id = reading.id
-            deleteBtn.innerText = 'Delete'
-            deleteBtn.className = 'btn btn-danger'
-            deleteBtn.addEventListener('click', Adapter.deleteReading)
-
-          // Append Data to Sub-Body
-          // ul.append(warning, rundown, compatibility, team, teamMotto, cosmicAddress, viewBtn, deleteBtn)
-          ul.append(createdAt, team, cosmicAddress, viewBtn, deleteBtn)
-          // Append Card Data
-          headerDiv.appendChild(image)
-          bodyDiv.appendChild(ul)
-          // Append to Card
-          cardDiv.append(headerDiv, bodyDiv)
-          // Append to Column
-          scrollingDiv.appendChild(cardDiv)
+          Generator.renderSideReading(reading)
         }
       })
     })
   }
 
+  static renderSideReading(reading) {
+    const cardDiv = document.createElement('div')
+      cardDiv.dataset.id = reading.id
+      cardDiv.id = `user-reading-${reading.id}`
+      cardDiv.className = `card marginal`
+    const headerDiv = document.createElement('div')
+      headerDiv.id = `image-${reading.id}`
+      headerDiv.dataset.id = reading.id
+
+    const bodyDiv = document.createElement('div')
+      bodyDiv.dataset.id = reading.id
+      bodyDiv.id = `body-${reading.id}`
+      bodyDiv.classList.add('card-body')
+    // Card Header Data
+    const nameAndSign = document.createElement('p')
+      nameAndSign.className = 'name-p'
+    const image = document.createElement('img')
+      image.src = reading.gif_url
+      image.className = 'fit-gif'
+    const createdAt = document.createElement('p')
+      createdAt.className = 'createdAt-p'
+    const team = document.createElement('p')
+      team.className = 'team-p'
+    const teamMotto = document.createElement('p')
+      teamMotto.className = 'team-p'
+    const cosmicAddress = document.createElement('p')
+      cosmicAddress.className = 'cosmic-A'
+    const warning = document.createElement('p')
+      warning.className = 'warning-p'
+    const rundown = document.createElement('p')
+      rundown.className = 'rundown-p'
+    const compatibility = document.createElement('p')
+      compatibility.className = 'comp-p'
+
+      if (reading.team === null){
+        team.innerText = "No team Assigned"
+        teamMotto.innerText = ''
+        headerDiv.className = `card-header card-header-1`
+        bodyDiv.className = `card-header card-header-1`
+
+      } else{
+        team.innerText = reading.team.name
+        teamMotto.innerText = reading.team.motto
+        headerDiv.className = `card-header card-header-${reading.team.id}`
+        bodyDiv.className = `card-header card-header-${reading.team.id}`
+
+      }
+      nameAndSign.innerHTML = `<b>${reading.user.username}</b>, ${reading.user.sign}`
+      cosmicAddress.innerHTML = reading.universe_id.split("<br>")[0]
+      let createdAtDate = new Date(reading.created_at)
+      createdAt.innerHTML = `
+      ${createdAtDate.toDateString()}, ${createdAtDate.toLocaleTimeString()}
+      `
+      warning.innerText = reading.time_warning
+      rundown.innerText = reading.description
+      compatibility.innerText = reading.compatibility
+
+    const viewBtn = document.createElement('button')
+      viewBtn.dataset.id = reading.id
+      viewBtn.innerText = "View"
+      viewBtn.className = 'btn btn-info'
+      viewBtn.addEventListener('click', Adapter.viewReading)
+    const deleteBtn = document.createElement('button')
+      deleteBtn.dataset.id = reading.id
+      deleteBtn.innerText = 'Delete'
+      deleteBtn.className = 'btn btn-danger'
+      deleteBtn.addEventListener('click', Adapter.deleteReading)
+
+    // Append Data to Sub-Body
+    bodyDiv.append(createdAt, team, cosmicAddress, viewBtn, deleteBtn)
+    // Append Card Data
+    headerDiv.appendChild(image)
+    // Append to Card
+    cardDiv.append(headerDiv, bodyDiv)
+    // Append to Column
+    document.getElementById('scrollingSideBar').appendChild(cardDiv)
+  }
+
+
+
   static renderReading(reading){
       const body = document.getElementById('reading-display')
         body.className = `center card card-header-${reading.team.id} micro-margin scroll-div-main`
         body.innerText = ''
-
       const bigDiv = document.createElement('div')
         bigDiv.className = 'card'
         bigDiv.id = `user-reading-${reading.id}`
       const ul = document.createElement('div')
         ul.className = `card-body`
 
+      //Create elements
+      const nameAndSign = document.createElement('p')
+        nameAndSign.className = 'name-p'
       const team = document.createElement('p')
-      team.className = 'team-p'
+        team.className = 'team-p'
       const teamMotto = document.createElement('p')
-      teamMotto.className = 'team-p'
+        teamMotto.className = 'team-p'
       const cosmicAddress = document.createElement('p')
-      cosmicAddress.className = 'cosmic-A'
+        cosmicAddress.className = 'cosmic-A'
       const warning = document.createElement('p')
-      warning.className = 'warning-p'
+        warning.className = 'warning-p'
       const rundown = document.createElement('p')
-      rundown.className = 'rundown-p'
+        rundown.className = 'rundown-p'
       const compatibility = document.createElement('p')
-      compatibility.className = 'comp-p'
-      compatibility.id = 'currentCompat'
-      compatibility.dataset.id = reading.compatibility
+        compatibility.className = 'comp-p'
+        compatibility.id = 'currentCompat'
+        compatibility.dataset.id = reading.compatibility
       const image = document.createElement('img')
-      image.className = "large-gif"
+        image.className = "large-gif"
 
+      //Add data
+      nameAndSign.innerHTML = `<b>${reading.user.username}</b>, ${reading.user.sign}`
       team.innerHTML = `<b>Team name: </b>${reading.team.name}<br>
       "${reading.team.motto}"
       `
@@ -260,7 +193,7 @@ class Generator{
           return Generator.revealTeamStandings()
         })
 
-      ul.append(image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
+      ul.append(nameAndSign, image, warning, rundown, compatibility, team, cosmicAddress, deleteBtn)
       body.appendChild(ul)
       Generator.getCompats(reading.user.id);
   }

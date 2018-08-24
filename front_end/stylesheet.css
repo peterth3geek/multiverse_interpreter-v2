@@ -65,7 +65,7 @@ img {
   overflow: scroll;
   overflow-y: scroll;
   max-height: 95vh;
-  height: 95vw;
+  height: 90vw;
 }
 
 .scroll-div-2 {
@@ -123,6 +123,12 @@ img {
   padding: 1vh;
 }
 
+.name-p{
+  color: white;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 0px
+}
 
 .team-p{
   background-color: #d4ebf6;
@@ -130,6 +136,7 @@ img {
   text-justify: inter-word;
   padding: 9px
 }
+
 
 .team-m{
   background-color: #f0dada;
