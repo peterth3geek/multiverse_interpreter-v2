@@ -108,10 +108,35 @@ class Adapter {
       })
   }
 
-  static handleReadings(e){
+  static handleSubmitWelcome(e){
+
     e.preventDefault()
     const theAlert = document.getElementById('validation-alert')
       theAlert.hidden = true
+    const sideBar = document.getElementById('sidebar-data')
+    const formData = e.target.parentElement
+    const formOBJ = {
+      username: formData.username.value,
+      sign: formData.sign.value
+    }
+    const topForm = document.getElementById('navbar-form')
+    Adapter.saveUser(formOBJ)
+      .then(user => {
+        Adapter.saveReading(user.sign, user.id)
+      //   if(sideBar.childElementCount === 0 ){
+        return Generator.renderConvertedReadingList(user.id)
+      // }
+      })
+
+      topForm.username.value = formData.username.value
+      topForm.sign.value = formData.sign.value
+
+  }
+
+  static handleReadings(e){
+    e.preventDefault()
+    const theAlert = document.getElementById('validation-alert')
+    theAlert.hidden = true
     const formData = e.target.parentElement.parentElement
 
     const formOBJ = {
