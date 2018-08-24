@@ -103,7 +103,7 @@ class Adapter {
       .then(user => {
         Adapter.saveReading(user.sign, user.id)
       //   if(sideBar.childElementCount === 0 ){
-      //   return Generator.renderConvertedReadingList(user.id)
+        return Generator.renderConvertedReadingList(user.id)
       // }
       })
   }
