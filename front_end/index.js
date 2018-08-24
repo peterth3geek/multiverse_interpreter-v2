@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', welcome)
 
     const welcomePhrase = document.createElement('h2')
       welcomePhrase.innerText = 'Welcome to the Multiverse'
+      welcomePhrase.className = 'welcome-text'
       welcomeHeader.appendChild(welcomePhrase)
 
     const form = document.createElement('form')
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', welcome)
       usernameInput.size = 50
       usernameInput.name = 'username'
       usernameInput.placeholder = 'Create or Submit Your Username'
-      usernameInput.className = 'form-control-lg'
+      usernameInput.className = 'form-control-lg micro-margin'
     const submitBtn = document.createElement('button')
       submitBtn.innerText = 'Get Multiverse Reading'
       submitBtn.addEventListener('click', Adapter.handleSubmitWelcome)
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', welcome)
       zodiacSigns.map(sign => signSelect.appendChild(new Option(sign, sign)));
     const readingsBtn = document.createElement('button')
       readingsBtn.innerText = 'All My Readings'
-      readingsBtn.addEventListener('click', Adapter.handleReadings)
+      readingsBtn.addEventListener('click', Adapter.handleReadingsWelcome)
       readingsBtn.className = 'btn btn-primary mr-sm-2'
 
     form.append(usernameInput, signSelect, submitBtn, readingsBtn)
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', welcome)
     welcomeCard.append(welcomeHeader, welcomeBody)
     displayArea.appendChild(welcomeCard)
 
+    Generator.renderAllConvertedReadingList()
     return createForm()
 
   }
